@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  background: #050608;
+  color: #eef1f5;
+  font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Text", "Inter", sans-serif;
+  font-feature-settings: "ss01", "cv01", "tnum";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tabular numbers for figures */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Starfield background */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.85), transparent 60%),
+    radial-gradient(1px 1px at 78% 14%, rgba(255, 255, 255, 0.65), transparent 60%),
+    radial-gradient(1px 1px at 33% 78%, rgba(255, 255, 255, 0.75), transparent 60%),
+    radial-gradient(1px 1px at 64% 56%, rgba(255, 255, 255, 0.45), transparent 60%),
+    radial-gradient(2px 2px at 50% 32%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 86% 84%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 8% 88%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 92% 38%, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 20% 50%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(2px 2px at 70% 70%, rgba(255, 255, 255, 0.35), transparent 60%),
+    linear-gradient(180deg, #04060b 0%, #07091a 60%, #02030a 100%);
+}
+
+/* Subtle grid for chart sections */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.glow-text {
+  text-shadow: 0 0 28px rgba(140, 178, 255, 0.35);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.6); }
+}
+.pulse-dot {
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee {
+  animation: drift 60s linear infinite;
+}

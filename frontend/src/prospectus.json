@@ -1,0 +1,293 @@
+{
+  "filing_metadata": {
+    "issuer": "Space Exploration Technologies Corp.",
+    "cik": "0001181412",
+    "filing_type": "S-1",
+    "filed_date": "2026-05-20",
+    "accession_number": "0001628280-26-036936",
+    "file_number": "333-296070",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm",
+    "filing_index_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/0001628280-26-036936-index.htm",
+    "principal_office": "1 Rocket Road, Starbase, Texas 78521",
+    "as_of_date_for_operational_metrics": "March 31, 2026"
+  },
+  "ipo": {
+    "ticker": "SPCX",
+    "exchange": "Nasdaq and Nasdaq Texas",
+    "security": "Class A common stock",
+    "lock_up_days": 180,
+    "class_a_votes": 1,
+    "class_b_votes": 10,
+    "musk_voting_power_pre_offering_pct": 85.1,
+    "controlled_company": true,
+    "dual_class_class_b_director_election_pct": 51,
+    "dividend_policy": "No cash dividends anticipated.",
+    "mandatory_use": "Net proceeds must repay $20B SpaceX Bridge Loan (matures Sept 2, 2027)."
+  },
+  "financials": {
+    "annual": [
+      {"year": 2023, "revenue": 10387, "operating_income": -3505, "net_income": -4628},
+      {"year": 2024, "revenue": 14015, "operating_income": 466, "net_income": 791},
+      {"year": 2025, "revenue": 18674, "operating_income": -2589, "net_income": -4937}
+    ],
+    "adjusted_ebitda_FY2025": 6584,
+    "adjusted_ebitda_Q1_2026": 1127,
+    "quarterly": [
+      {"period": "Q1 2025", "revenue": 4067, "net_income": -528},
+      {"period": "Q1 2026", "revenue": 4694, "net_income": -4276}
+    ],
+    "capex": [
+      {"year": 2023, "space": 1497, "connectivity": 2455, "ai": 463, "total": 4415},
+      {"year": 2024, "space": 2032, "connectivity": 3498, "ai": 5633, "total": 11163},
+      {"year": 2025, "space": 3832, "connectivity": 4178, "ai": 12727, "total": 20737}
+    ],
+    "cash_flows": [
+      {"year": 2023, "operating": 4520, "investing": -4867, "financing": 422},
+      {"year": 2024, "operating": 5776, "investing": -10796, "financing": 11830},
+      {"year": 2025, "operating": 6785, "investing": -19575, "financing": 26350}
+    ],
+    "balance_sheet": [
+      {"date": "2024-12-31", "cash": 11385, "total_assets": 57062, "total_liabilities": 31258, "equity": 4863},
+      {"date": "2025-12-31", "cash": 24747, "total_assets": 92079, "total_liabilities": 50754, "equity": 2573},
+      {"date": "2026-03-31", "cash": 15852, "total_assets": 102094, "total_liabilities": 60512, "equity": 34533}
+    ],
+    "debt_mar_31_2026": {
+      "bridge_loan": 20000,
+      "other_financings": 9105,
+      "total_long_term_debt": 29111,
+      "credit_facility_capacity": 5000
+    },
+    "backlog_dec_31_2025": 28377,
+    "backlog_mar_31_2026": 27621,
+    "backlog_within_1yr_pct": 32,
+    "backlog_2027_2028_pct": 53,
+    "backlog_after_pct": 15,
+    "deferred_revenue_dec_31_2025": 12116
+  },
+  "segments": {
+    "FY2023": {
+      "Space": {"launch_services": 1964, "launch_and_development": 1593, "total": 3557, "adj_ebitda": 997},
+      "Connectivity": {"consumer": 2817, "enterprise_and_government": 1052, "total": 3869, "adj_ebitda": 1602},
+      "AI": {"advertising": 2323, "ai_solutions_and_infrastructure": 638, "total": 2961, "adj_ebitda": 1222}
+    },
+    "FY2024": {
+      "Space": {"launch_services": 2584, "launch_and_development": 1212, "total": 3796, "adj_ebitda": 1154},
+      "Connectivity": {"consumer": 4830, "enterprise_and_government": 2769, "total": 7599, "adj_ebitda": 3849},
+      "AI": {"advertising": 1728, "ai_solutions_and_infrastructure": 892, "total": 2620, "adj_ebitda": 347}
+    },
+    "FY2025": {
+      "Space": {"launch_services": 2576, "launch_and_development": 1510, "total": 4086, "adj_ebitda": 653},
+      "Connectivity": {"consumer": 7208, "enterprise_and_government": 4179, "total": 11387, "adj_ebitda": 7168},
+      "AI": {"advertising": 1844, "ai_solutions_and_infrastructure": 1357, "total": 3201, "adj_ebitda": -1237}
+    },
+    "Q1_2026": {
+      "Space": 619, "Connectivity": 3257, "AI": 818
+    }
+  },
+  "customers": {
+    "customer_a_revenue_pct": [
+      {"year": 2023, "pct": 25.2},
+      {"year": 2024, "pct": 24.2},
+      {"year": 2025, "pct": 20.9}
+    ],
+    "customer_a_note": "Customer A is widely understood from public reporting to be the U.S. government; not named in filing.",
+    "named_government_customers": ["NASA", "U.S. Space Force", "U.S. Department of Defense"],
+    "iss_missions_2025": "All 5 U.S. crew & cargo missions to ISS for NASA.",
+    "nssl_2025": "11 of 12 National Security Space Launch medium and heavy lift missions.",
+    "anthropic_deal": {
+      "monthly_fee_billions": 1.25,
+      "term_months": 36,
+      "term_window": "May 2026 - May 2029",
+      "annualized_billions": 15,
+      "total_contracted_billions": 45,
+      "termination": "Either party on 90 days' notice"
+    }
+  },
+  "starlink": {
+    "subscribers_millions": [
+      {"period": "FY2023", "value": 2.3},
+      {"period": "FY2024", "value": 4.4},
+      {"period": "Q1 2025", "value": 5.0},
+      {"period": "FY2025", "value": 8.9},
+      {"period": "Q1 2026", "value": 10.3}
+    ],
+    "arpu_usd": [
+      {"period": "FY2023", "value": 99},
+      {"period": "FY2024", "value": 91},
+      {"period": "FY2025", "value": 81},
+      {"period": "Q1 2025", "value": 86},
+      {"period": "Q1 2026", "value": 66}
+    ],
+    "satellites_in_orbit_mar_31_2026": 9600,
+    "v1_mobile_satellites": 650,
+    "share_of_active_maneuverable_satellites_pct": 75,
+    "broadband_countries": 164,
+    "satellite_to_mobile_countries": 30,
+    "mno_partnerships": 30,
+    "monthly_unique_satellite_to_mobile_devices_millions": 7.4,
+    "residential_median_download_mbps": 225,
+    "redmond_satellites_per_week": 70,
+    "v3_target_downlink_tbps": 1,
+    "v3_per_starship": 60,
+    "v3_capacity_multiplier_vs_falcon": 20,
+    "v3_deployment_start": "H2 2026 via Starship"
+  },
+  "launch": {
+    "all_time_orbital_launches": 650,
+    "all_time_mass_to_orbit_metric_tons": 7400,
+    "falcon_mission_success_rate_pct": 99,
+    "flight_proven_launches": 540,
+    "max_first_stage_reflights": 34,
+    "annual_falcon_launches": [
+      {"year": 2023, "launches": 98, "mass_to_orbit_mt": 1210},
+      {"year": 2024, "launches": 138, "mass_to_orbit_mt": 1699},
+      {"year": 2025, "launches": 170, "mass_to_orbit_mt": 2213}
+    ],
+    "q1_2026_launches": 40,
+    "q1_2026_flight_proven_pct": 97.5,
+    "world_mass_to_orbit_share_since_2023_pct": 80,
+    "falcon_heavy_payload_leo_mt": 64,
+    "falcon_9_payload_leo_mt": 23,
+    "dragon_crewmembers_since_2020": 78,
+    "dragon_countries_represented": 20,
+    "cost_per_kg_pre_spacex": 18500,
+    "falcon_9_cost_per_kg_2010": 2700,
+    "falcon_heavy_cost_per_kg_2018": 1400
+  },
+  "starship": {
+    "flight_tests_executed": 11,
+    "next_milestone": "12th flight test debuts next-gen Starship + Super Heavy from new pad at Starbase.",
+    "expected_first_payload_to_orbit": "H2 2026",
+    "v3_payload_to_orbit_mt": 100,
+    "future_gen_target": "Double V3 payload capacity",
+    "cost_reduction_target_pct": 99,
+    "rd_FY2025_millions": 3004,
+    "rd_Q1_2026_millions": 930,
+    "reusability": "Fully and rapidly reusable; multiple launches per day per pad.",
+    "milestone_quote": "First booster catch using 'chopstick' arms on the same tower from which it launched."
+  },
+  "risk_factors": [
+    {"category": "Execution", "summary": "Growth strategy is highly dependent on Starship — Falcon cannot deploy V3 or V2 Mobile satellites."},
+    {"category": "Regulatory — FAA", "summary": "Delays or difficulties in FAA launch and reentry licenses could disrupt operations."},
+    {"category": "Regulatory — FCC", "summary": "Spectrum and communications licenses delays could disrupt connectivity services."},
+    {"category": "AI Regulation", "summary": "AI products and X platform subject to evolving U.S. and foreign laws; force product changes, fines."},
+    {"category": "Scale", "summary": "Strategy depends on designing and deploying at unprecedented scale — execution, cost, timing risks."},
+    {"category": "Launch Failures", "summary": "Have experienced and will likely continue to experience launch delays and failures."},
+    {"category": "Customer Concentration", "summary": "Customer A (U.S. government) = 20.9% of FY2025 revenue; subject to budget, bid, termination risk."},
+    {"category": "Supply Chain", "summary": "Sole/limited suppliers for certain inputs despite vertical integration."},
+    {"category": "Competition", "summary": "Intense competition; AI competitors with greater resources."},
+    {"category": "AI Integration", "summary": "Newly combined AI segment still being integrated in rapidly evolving industry."},
+    {"category": "Geopolitics", "summary": "Adverse global macro and geopolitical conditions may negatively affect business."},
+    {"category": "Talent", "summary": "Reliance on engineers; restrictions on foreign talent retention."},
+    {"category": "Indebtedness", "summary": "$20B SpaceX Bridge Loan + $9.1B other financings at Mar 31, 2026."},
+    {"category": "Musk Dependency", "summary": "Mr. Musk serves as CEO, CTO, Chairman, holds majority voting power post-IPO."},
+    {"category": "Litigation", "summary": "$530M accrued; €120M EC fine; $172M Vidstream verdict; Grok image-generation class actions."},
+    {"category": "Forum Restrictions", "summary": "Bylaws include mandatory arbitration and restrict shareholder forums."},
+    {"category": "Unproven Markets", "summary": "Orbital AI compute, lunar economy, Mars transport — non-existent technologies."},
+    {"category": "Environment", "summary": "Litigation on natural-gas turbines at xAI data centers; upper-atmosphere rocket emissions."}
+  ],
+  "management": {
+    "team": [
+      {"name": "Elon Musk", "age": 54, "role": "CEO, CTO, Chairman", "served_since": "May 2002"},
+      {"name": "Gwynne Shotwell", "age": 62, "role": "President, COO, Director", "served_since": "2008"},
+      {"name": "Bret Johnsen", "age": 57, "role": "CFO", "served_since": "2011"},
+      {"name": "Ira Ehrenpreis", "age": 57, "role": "Director"},
+      {"name": "Randy Glein", "age": 60, "role": "Director"},
+      {"name": "Antonio J. Gracias", "age": 55, "role": "Director (Valor)"},
+      {"name": "Donald Harrison", "age": 54, "role": "Director"},
+      {"name": "Steve Jurvetson", "age": 59, "role": "Director"},
+      {"name": "Luke Nosek", "age": 50, "role": "Director"}
+    ],
+    "musk_ownership": {
+      "class_a_shares_millions": 849.5,
+      "class_a_pct": 12.3,
+      "class_b_shares_millions": 5569.1,
+      "class_b_pct": 93.6,
+      "combined_voting_power_pct": 85.1
+    },
+    "comp_2025": [
+      {"name": "Elon Musk", "salary": 54080, "stock_awards": 0, "options": 0, "total": 54080},
+      {"name": "Gwynne Shotwell", "salary": 1080127, "stock_awards": 1727160, "options": 82969515, "total": 85806897},
+      {"name": "Bret Johnsen", "salary": 825000, "stock_awards": 0, "options": 9013002, "total": 9838002}
+    ]
+  },
+  "valuation": {
+    "class_c_409a_may_2025": 37.00,
+    "class_c_409a_oct_2025": 42.40,
+    "approx_fully_diluted_shares_billions": 12.5,
+    "implied_private_valuation_oct_2025_usd_billions": 530,
+    "note_implied_valuation": "Illustrative — not stated in filing. Fully-diluted shares × $42.40.",
+    "tam": {
+      "total_trillions": 28.5,
+      "space_billions": 370,
+      "connectivity_trillions": 1.6,
+      "starlink_broadband_billions": 870,
+      "starlink_mobile_billions": 740,
+      "ai_trillions": 26.5,
+      "ai_infrastructure_trillions": 2.4,
+      "ai_consumer_billions": 760,
+      "ai_advertising_billions": 600,
+      "ai_enterprise_trillions": 22.7
+    },
+    "cursor_implied_billions": 60
+  },
+  "use_of_proceeds": [
+    "Repay $20B SpaceX Bridge Loan (mandatory under loan agreement)",
+    "Fund growth strategy",
+    "Expansion of AI compute infrastructure",
+    "Enhancements to launch infrastructure and launch vehicles",
+    "Increases in scale and capacity of satellite constellations",
+    "Remaining amounts for general corporate purposes"
+  ],
+  "litigation": [
+    {"name": "European Commission DSA fine", "fine": "€120M", "status": "Decision Dec 5, 2025; appealed Feb 16, 2026"},
+    {"name": "Vidstream patent case", "fine": "$172M (incl. $67M interest)", "status": "Jury verdict Apr 2025; on appeal"},
+    {"name": "NMPA music publishers copyright", "status": "Contributory infringement claims survived; discovery ongoing"},
+    {"name": "SDBN GDPR Dutch class (MoPub)", "status": "Class certification denied Feb 2026; may stay pending CJEU"},
+    {"name": "SOMI Dutch collective action", "status": "Hearing Apr 2, 2026"},
+    {"name": "Grok image-generation class actions", "status": "Multiple pending (Jane Doe cases, Baltimore Case, Mar 2026)"}
+  ],
+  "litigation_accrual_dec_31_2025_millions": 530,
+  "quotes": [
+    {"text": "You want to wake up in the morning and think the future is going to be great — and that's what being a space-faring civilization is all about.", "speaker": "Elon Musk"},
+    {"text": "Our mission is to build the systems and technologies necessary to make life multiplanetary.", "speaker": "SpaceX"},
+    {"text": "We believe we have identified the largest actionable total addressable market in human history.", "speaker": "SpaceX"},
+    {"text": "We do not want humans to have the same fate as dinosaurs.", "speaker": "SpaceX"},
+    {"text": "Since 2023, we have launched more than 80% of mass to orbit for the world each year.", "speaker": "SpaceX"},
+    {"text": "We aim to reduce the cost to reach orbit by 99% or more relative to the historical average launch cost.", "speaker": "SpaceX"},
+    {"text": "Our ability to execute our growth strategy is highly dependent on Starship.", "speaker": "SpaceX (Risk Factors)"},
+    {"text": "We are capable of unlocking an era of unprecedented economic expansion ... propelling us to Kardashev Type II status.", "speaker": "SpaceX"}
+  ],
+  "facts": {
+    "employees_mar_31_2026": 22000,
+    "facilities": [
+      {"location": "Starbase, Texas", "purpose": "HQ; Starship development, manufacturing, testing, launch"},
+      {"location": "Hawthorne, California", "purpose": "Falcon and Dragon manufacturing"},
+      {"location": "McGregor, Texas", "purpose": "Raptor and Merlin engine testing"},
+      {"location": "Redmond, Washington", "purpose": "Starlink satellite manufacturing (~70/week)"},
+      {"location": "Bastrop, Texas", "purpose": "Starlink Kit manufacturing — tens of thousands/day"},
+      {"location": "Kennedy Space Center / Cape Canaveral, FL", "purpose": "LC-39A, SLC-40 launch sites"},
+      {"location": "Vandenberg SFB, California", "purpose": "SLC-4 polar orbit launches"},
+      {"location": "Memphis, TN / Southaven, MS", "purpose": "COLOSSUS / COLOSSUS II AI data center clusters (gigawatt-scale)"}
+    ],
+    "industry_firsts": [
+      {"year": 2008, "achievement": "First private company to launch a liquid-fuel rocket to orbit"},
+      {"year": 2012, "achievement": "First private company to dock with the ISS"},
+      {"year": 2015, "achievement": "First to propulsively land an orbital-class booster"},
+      {"year": 2017, "achievement": "First to refly an orbital-class booster"},
+      {"year": 2019, "achievement": "First to begin deploying a large-scale LEO broadband constellation"},
+      {"year": 2020, "achievement": "First private company to transport astronauts to orbit"},
+      {"year": 2022, "achievement": "First to mass-manufacture consumer phased-array user terminals"},
+      {"year": 2025, "achievement": "First to deploy a large-scale satellite-to-mobile constellation"},
+      {"year": 2026, "achievement": "First gigawatt-scale AI training cluster"}
+    ],
+    "ai_compute_gw": [
+      {"year": 2023, "value": 0},
+      {"year": 2024, "value": 0.3},
+      {"year": 2025, "value": 0.8},
+      {"period": "Q1 2026", "value": 1.0}
+    ],
+    "colossus_first_cluster_construction_days": 122,
+    "long_term_orbital_compute_gw": 100
+  }
+}

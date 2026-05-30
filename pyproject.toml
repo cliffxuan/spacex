@@ -1,0 +1,10 @@
+[project]
+name = "spacex-ipo"
+version = "0.1.0"
+description = "Interactive primary-source breakdown of the SpaceX S-1 prospectus"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+]
