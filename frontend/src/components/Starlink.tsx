@@ -15,11 +15,15 @@ import { data, SEC_URL } from "../data";
 export function Starlink() {
   const subs = data.starlink.subscribers_millions;
   const arpu = data.starlink.arpu_usd;
-  const merged = subs.map((s, i) => ({
-    period: s.period,
-    Subscribers: s.value,
-    ARPU: arpu[i]?.value,
-  }));
+  const merged = subs.map((s) => {
+    const arpuVal = arpu.find((a) => a.period === s.period)?.value;
+    return {
+      period: s.period,
+      Subscribers: s.value,
+      ARPU: arpuVal,
+    };
+  });
+
 
   return (
     <Section

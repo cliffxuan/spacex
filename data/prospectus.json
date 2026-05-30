@@ -114,8 +114,8 @@
     "arpu_usd": [
       {"period": "FY2023", "value": 99},
       {"period": "FY2024", "value": 91},
-      {"period": "FY2025", "value": 81},
       {"period": "Q1 2025", "value": 86},
+      {"period": "FY2025", "value": 81},
       {"period": "Q1 2026", "value": 66}
     ],
     "satellites_in_orbit_mar_31_2026": 9600,
