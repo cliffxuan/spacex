@@ -10,6 +10,7 @@ import { Starship } from "./components/Starship";
 import { Customers } from "./components/Customers";
 import { Risks } from "./components/Risks";
 import { Valuation } from "./components/Valuation";
+import { PriceTracker } from "./components/PriceTracker";
 import { UseOfProceeds } from "./components/UseOfProceeds";
 import { Management } from "./components/Management";
 import { Litigation } from "./components/Litigation";
@@ -32,6 +33,7 @@ export default function App() {
         <Customers />
         <Risks />
         <Valuation />
+        <PriceTracker />
         <UseOfProceeds />
         <Management />
         <Litigation />

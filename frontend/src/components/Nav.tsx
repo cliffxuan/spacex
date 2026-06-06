@@ -8,6 +8,7 @@ const ITEMS = [
   { id: "starship", label: "Starship" },
   { id: "customers", label: "Customers" },
   { id: "risks", label: "Risks" },
+  { id: "market", label: "Market" },
   { id: "use", label: "Use of Proceeds" },
   { id: "management", label: "Management" },
   { id: "litigation", label: "Litigation" },
