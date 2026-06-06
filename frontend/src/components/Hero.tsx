@@ -29,7 +29,7 @@ export function Hero() {
           <div className="sm:col-span-8">
             <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-cyan-400">
               <span className="mr-2 inline-block h-2 w-2 -translate-y-px rounded-full bg-cyan-400 pulse-dot align-middle" />
-              S-1 filed 20 May 2026 · Preliminary prospectus
+              S-1 filed 20 May 2026 · Priced at $135 via S-1/A No. 2 (3 Jun 2026)
             </div>
             <h1 className="mt-6 text-5xl font-semibold leading-[0.95] tracking-tighter glow-text sm:text-7xl md:text-[88px]">
               SpaceX is going public.
@@ -80,16 +80,17 @@ export function Hero() {
                 </span>
               </div>
               <dl className="mt-4 space-y-3 text-sm">
+                <Row k="IPO price" v={`$${data.ipo.pricing.price_per_share_usd.toFixed(2)}`} />
+                <Row k="Shares offered" v={`${(data.ipo.pricing.shares_offered / 1e6).toFixed(0)}M`} />
+                <Row k="Gross proceeds" v={`~$${data.ipo.pricing.gross_proceeds_usd_billions}B`} />
                 <Row k="Exchange" v={data.ipo.exchange} />
-                <Row k="Security" v="Class A common" />
                 <Row k="Voting (A · B)" v={`1× · 10×`} />
                 <Row k="Lock-up" v={`${data.ipo.lock_up_days} days`} />
                 <Row k="Controlled co." v="Yes" />
-                <Row k="Dividends" v="None planned" />
               </dl>
             </div>
             <div className="mt-3 px-1 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
-              Pricing & share count are placeholders in the preliminary S-1.
+              Priced at ${data.ipo.pricing.price_per_share_usd.toFixed(2)} in S-1/A No. 2 — ~${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T implied valuation.
             </div>
           </div>
         </div>

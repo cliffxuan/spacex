@@ -9,7 +9,16 @@
     "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm",
     "filing_index_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/0001628280-26-036936-index.htm",
     "principal_office": "1 Rocket Road, Starbase, Texas 78521",
-    "as_of_date_for_operational_metrics": "March 31, 2026"
+    "as_of_date_for_operational_metrics": "March 31, 2026",
+    "latest_amendment": {
+      "form": "S-1/A",
+      "amendment_no": 2,
+      "filed_date": "2026-06-03",
+      "accession_number": "0001628280-26-040364",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/spaceexplorationtechnologib.htm",
+      "filing_index_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/0001628280-26-040364-index.htm",
+      "note": "Amendment No. 2 added the pricing terms (shares offered + price per share) absent from the original S-1."
+    }
   },
   "ipo": {
     "ticker": "SPCX",
@@ -22,7 +31,28 @@
     "controlled_company": true,
     "dual_class_class_b_director_election_pct": 51,
     "dividend_policy": "No cash dividends anticipated.",
-    "mandatory_use": "Net proceeds must repay $20B SpaceX Bridge Loan (matures Sept 2, 2027)."
+    "mandatory_use": "Net proceeds must repay $20B SpaceX Bridge Loan (matures Sept 2, 2027).",
+    "pricing": {
+      "source": "S-1/A Amendment No. 2, filed 2026-06-03",
+      "shares_offered": 555555555,
+      "price_per_share_usd": 135.00,
+      "shares_registered_incl_additional": 631481481,
+      "max_aggregate_offering_usd_billions": 85.25,
+      "gross_proceeds_usd_billions": 75.0,
+      "class_a_outstanding_post_mar31": 6824641355,
+      "class_b_outstanding_post_mar31": 5695668265,
+      "total_shares_outstanding": 12520309620,
+      "implied_ipo_valuation_usd_trillions": 1.69,
+      "implied_ipo_valuation_note": "Total shares outstanding (12.52B) × $135.00 IPO price.",
+      "lead_book_running_managers": ["Goldman Sachs & Co. LLC", "Morgan Stanley"],
+      "other_underwriters": ["BofA Securities", "Citigroup", "J.P. Morgan", "Barclays", "Deutsche Bank Securities", "RBC Capital Markets", "UBS Investment Bank", "Wells Fargo Securities", "Allen & Company LLC", "Cantor", "Needham & Company", "Raymond James", "Societe Generale", "Stifel", "William Blair", "BTG Pactual", "ING", "Macquarie Capital", "Mirae Asset Securities", "Mizuho", "Santander"]
+    },
+    "global_offerings": [
+      {"jurisdiction": "United Kingdom", "detail": "UK Retail Offer via Marex Financial public-offer platform (launched June 4, 2026)."},
+      {"jurisdiction": "Japan", "detail": "Japanese securities registration with the Kanto Local Finance Bureau (June 5, 2026)."},
+      {"jurisdiction": "Australia", "detail": "Australian prospectus (Australian-law wrap + U.S. preliminary prospectus), June 4, 2026."},
+      {"jurisdiction": "Canada", "detail": "Second amended & restated preliminary base PREP prospectus, June 3, 2026."}
+    ]
   },
   "financials": {
     "annual": [
@@ -101,6 +131,20 @@
       "annualized_billions": 15,
       "total_contracted_billions": 45,
       "termination": "Either party on 90 days' notice"
+    },
+    "google_deal": {
+      "counterparty": "Google LLC",
+      "type": "Cloud Service Agreement (compute capacity)",
+      "signed": "June 5, 2026",
+      "gpus": 110000,
+      "gpu_type": "NVIDIA",
+      "monthly_fee_billions": 0.92,
+      "term_window": "Oct 2026 - June 2029",
+      "annualized_billions": 11,
+      "ramp_note": "Capacity ramps up through September 2026 at a reduced fee.",
+      "delivery_deadline": "Sept 30, 2026 (one-month grace period; Google may terminate or accept fewer GPUs with pro-rata fee reduction).",
+      "termination": "Either party on 90 days' notice after Dec 31, 2026",
+      "source": "Free Writing Prospectus filed June 5, 2026"
     }
   },
   "starlink": {

@@ -1,18 +1,38 @@
 import { Section, Card, SourceLink } from "./Section";
-import { data, SEC_URL } from "../data";
-import { Vote, Lock, Building2, Coins, Banknote, AlertTriangle } from "lucide-react";
+import { data, SEC_URL, AMENDMENT_URL } from "../data";
+import { Vote, Lock, Building2, Coins, Banknote, AlertTriangle, Tag } from "lucide-react";
 
 export function IPOMechanics() {
+  const p = data.ipo.pricing;
   return (
     <Section
       id="ipo"
       eyebrow="Section 02 · How this offering is structured"
       title="The mechanics, in plain English"
-      blurb="Public capital — but private-style control. Read this before you read the rest."
-      sourceUrl={SEC_URL}
-      sourceLabel="The Offering · Description of Capital Stock"
+      blurb="Public capital — but private-style control. Read this before you read the rest. Pricing terms below are from S-1/A Amendment No. 2 (June 3, 2026)."
+      sourceUrl={AMENDMENT_URL}
+      sourceLabel="S-1/A No. 2 · The Offering · Description of Capital Stock"
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <MechanicCard
+          icon={<Tag size={18} />}
+          title="Priced at $135.00 / share"
+          tone="from-emerald-500/15"
+          body={
+            <>
+              The amendment set the offering at{" "}
+              <span className="text-zinc-100 tabular">{(p.shares_offered / 1e6).toFixed(0)}M shares</span>{" "}
+              of Class A at{" "}
+              <span className="text-emerald-300 tabular">${p.price_per_share_usd.toFixed(2)}</span> —
+              roughly <span className="text-zinc-100 tabular">${p.gross_proceeds_usd_billions}B</span> in gross
+              proceeds. That implies a{" "}
+              <span className="text-emerald-300 tabular">~${p.implied_ipo_valuation_usd_trillions}T</span>{" "}
+              fully-diluted valuation.{" "}
+              <SourceLink href={AMENDMENT_URL}>S-1/A No. 2 — The Offering</SourceLink>
+            </>
+          }
+        />
+
         <MechanicCard
           icon={<Vote size={18} />}
           title="Dual-class with 10× votes"

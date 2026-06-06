@@ -3,6 +3,7 @@ import prospectus from "./prospectus.json";
 export const data = prospectus;
 export const SEC_URL = prospectus.filing_metadata.source_url;
 export const FILING_INDEX = prospectus.filing_metadata.filing_index_url;
+export const AMENDMENT_URL = prospectus.filing_metadata.latest_amendment.source_url;
 
 export const fmtUSD = (n: number, suffix = "M") => {
   if (Math.abs(n) >= 1000) return `$${(n / 1000).toFixed(1)}B`;

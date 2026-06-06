@@ -1,9 +1,10 @@
 import { Section, Card, SourceLink } from "./Section";
-import { data, SEC_URL } from "../data";
+import { data, SEC_URL, AMENDMENT_URL } from "../data";
 import { Target } from "lucide-react";
 
 export function Valuation() {
   const tam = data.valuation.tam;
+  const p = data.ipo.pricing;
   return (
     <Section
       id="valuation"
@@ -70,21 +71,27 @@ export function Valuation() {
         </Card>
 
         <div className="space-y-5 lg:col-span-5">
-          <Card>
-            <div className="text-xs uppercase tracking-widest text-zinc-500">
-              Private 409A valuations
+          <Card className="bg-gradient-to-br from-emerald-500/[0.07] via-zinc-900/60 to-zinc-950/80">
+            <div className="text-xs uppercase tracking-widest text-emerald-300/80">
+              From private marks to a public price
             </div>
-            <h3 className="mt-2 text-lg font-semibold">Most recent internal marks</h3>
+            <h3 className="mt-2 text-lg font-semibold">The IPO repriced everything</h3>
             <dl className="mt-4 space-y-3 text-sm">
-              <Row k="Class C — May 2025" v={`$${data.valuation.class_c_409a_may_2025.toFixed(2)}`} />
-              <Row k="Class C — Oct 2025" v={`$${data.valuation.class_c_409a_oct_2025.toFixed(2)}`} />
-              <Row k="Fully-diluted shares (~)" v={`${data.valuation.approx_fully_diluted_shares_billions}B`} />
-              <Row k="Implied valuation Oct '25" v={`~$${data.valuation.implied_private_valuation_oct_2025_usd_billions}B`} />
+              <Row k="Class C 409A — May 2025" v={`$${data.valuation.class_c_409a_may_2025.toFixed(2)}`} />
+              <Row k="Class C 409A — Oct 2025" v={`$${data.valuation.class_c_409a_oct_2025.toFixed(2)}`} />
+              <Row k="IPO price — Jun 2026 (S-1/A)" v={`$${p.price_per_share_usd.toFixed(2)}`} />
+              <Row k="Shares offered" v={`${(p.shares_offered / 1e6).toFixed(0)}M`} />
+              <Row k="Gross proceeds" v={`~$${p.gross_proceeds_usd_billions}B`} />
+              <Row k="Total shares outstanding" v={`${(p.total_shares_outstanding / 1e9).toFixed(2)}B`} />
+              <Row k="Implied IPO valuation" v={`~$${p.implied_ipo_valuation_usd_trillions}T`} />
             </dl>
             <p className="mt-3 text-xs text-zinc-500">
-              The implied $530B figure is illustrative — not stated in the prospectus. It's
-              the shares × the most recent option strike. Public market may reprice
-              dramatically.
+              Amendment No. 2 (June 3, 2026) set the price at{" "}
+              <span className="text-zinc-300">${p.price_per_share_usd.toFixed(2)}</span> — vs. the
+              ~${data.valuation.implied_private_valuation_oct_2025_usd_billions}B illustrative private
+              mark this site originally carried. At {(p.total_shares_outstanding / 1e9).toFixed(2)}B shares
+              that's a ~${p.implied_ipo_valuation_usd_trillions}T fully-diluted valuation.{" "}
+              <SourceLink href={AMENDMENT_URL}>S-1/A No. 2 — The Offering</SourceLink>
             </p>
           </Card>
           <Card className="bg-gradient-to-br from-cyan-500/[0.06] via-zinc-900/60 to-zinc-950/80">

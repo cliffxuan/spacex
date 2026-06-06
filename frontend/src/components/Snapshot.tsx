@@ -1,7 +1,7 @@
 import { Section, Card, SourceLink } from "./Section";
 import { data, SEC_URL } from "../data";
 import {
-  Building2,
+  Banknote,
   Rocket,
   Satellite,
   Cpu,
@@ -48,10 +48,11 @@ export function Snapshot() {
       sub: "Worldwide · no collective bargaining",
     },
     {
-      icon: <Building2 size={18} />,
-      label: "Headquarters",
-      value: "Starbase, TX",
-      sub: "1 Rocket Road — also the Starship launch site",
+      icon: <Banknote size={18} />,
+      label: "IPO raise (S-1/A)",
+      value: `~$${data.ipo.pricing.gross_proceeds_usd_billions}B`,
+      sub: `${(data.ipo.pricing.shares_offered / 1e6).toFixed(0)}M shares @ $${data.ipo.pricing.price_per_share_usd.toFixed(0)} · ~$${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T valuation`,
+      accent: "text-emerald-300",
     },
     {
       icon: <Gauge size={18} />,

@@ -9,7 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import { Section, Card, SourceLink } from "./Section";
-import { data, SEC_URL } from "../data";
+import { data, SEC_URL, AMENDMENT_URL } from "../data";
 import { Shield, Building2, AlertTriangle, Cpu } from "lucide-react";
 
 export function Customers() {
@@ -24,7 +24,7 @@ export function Customers() {
       id="customers"
       eyebrow="Section 07 · Customers"
       title="Who's actually paying"
-      blurb="One unnamed customer — widely understood from public reporting to be the U.S. government — is 20.9% of total revenue. A new compute deal with Anthropic could rival it."
+      blurb="One unnamed customer — widely understood from public reporting to be the U.S. government — is 20.9% of total revenue. Two large new compute deals — Anthropic and Google — could rival it."
       sourceUrl={SEC_URL}
       sourceLabel="Note 3 — Concentration of Risk"
     >
@@ -93,6 +93,25 @@ export function Customers() {
               Signed May 2026, runs through May 2029. Either party can terminate on 90 days'
               notice — so treat the $45B headline with care.{" "}
               <SourceLink href={SEC_URL}>S-1 — Recent Developments</SourceLink>
+            </p>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-cyan-500/10 via-zinc-900/60 to-zinc-950/80">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-cyan-300/80">
+              <Cpu size={14} /> Newer commercial contract
+            </div>
+            <h3 className="mt-2 text-xl font-semibold">Google compute deal</h3>
+            <div className="mt-4 grid grid-cols-2 gap-3 text-center text-sm">
+              <Stat2 label="Monthly fee" value={`$${data.customers.google_deal.monthly_fee_billions.toFixed(2)}B`} />
+              <Stat2 label="GPUs" value={`${(data.customers.google_deal.gpus / 1000).toFixed(0)}K`} />
+              <Stat2 label="Annualized" value={`~$${data.customers.google_deal.annualized_billions}B`} />
+              <Stat2 label="Window" value="Oct '26–Jun '29" />
+            </div>
+            <p className="mt-4 text-xs text-zinc-500">
+              Signed June 5, 2026 (disclosed in a free writing prospectus): ~110,000 NVIDIA GPUs,
+              ramping through Sept 2026. Either party can terminate on 90 days' notice after Dec 31,
+              2026.{" "}
+              <SourceLink href={AMENDMENT_URL}>FWP — Recent Developments</SourceLink>
             </p>
           </Card>
         </div>
