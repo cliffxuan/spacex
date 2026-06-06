@@ -47,6 +47,29 @@
       "lead_book_running_managers": ["Goldman Sachs & Co. LLC", "Morgan Stanley"],
       "other_underwriters": ["BofA Securities", "Citigroup", "J.P. Morgan", "Barclays", "Deutsche Bank Securities", "RBC Capital Markets", "UBS Investment Bank", "Wells Fargo Securities", "Allen & Company LLC", "Cantor", "Needham & Company", "Raymond James", "Societe Generale", "Stifel", "William Blair", "BTG Pactual", "ING", "Macquarie Capital", "Mirae Asset Securities", "Mizuho", "Santander"]
     },
+    "index_outlook": {
+      "disclaimer": "Not from the prospectus. Index inclusion follows each provider's methodology, not the IPO calendar — figures below are our analysis as of June 2026.",
+      "nasdaq_100": {
+        "status": "Likely fast-tracked",
+        "estimate": "~early July 2026",
+        "detail": "Nasdaq's 'Fast Entry' rule (effective May 1, 2026) admits a new listing ranking in the top ~40 constituents by total market value (~$100B threshold, ≥$5M ADTV) after 15 trading days. At ~$1.69T, SPCX clears that easily — so ~15 trading days after the June 12 debut.",
+        "source_url": "https://www.nasdaq.com/newsroom/nasdaq100-index-methodology-update-why-now"
+      },
+      "sp_500": {
+        "status": "Not eligible near-term",
+        "estimate": "No scheduled date",
+        "detail": "S&P 500 requires positive GAAP net income in the latest quarter and across the trailing four quarters; SpaceX posted -$4.9B (FY2025) and -$4.3B (Q1 2026). Public float (~4.4%) is also below the ~10% minimum. Multi-class shares are not a blocker (ban lifted 2023). Entry is conditional on fundamentals, not timing.",
+        "source_url": "https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-us-indices.pdf"
+      }
+    },
+    "expected_timeline": {
+      "roadshow_start": "2026-06-04",
+      "pricing_date": "2026-06-11",
+      "trading_start": "2026-06-12",
+      "settlement_date": "2026-06-15",
+      "exchange": "Nasdaq and Nasdaq Texas",
+      "source": "IPO factsheet / international offer timetables (FWPs filed June 4, 2026)"
+    },
     "global_offerings": [
       {"jurisdiction": "United Kingdom", "detail": "UK Retail Offer via Marex Financial public-offer platform (launched June 4, 2026)."},
       {"jurisdiction": "Japan", "detail": "Japanese securities registration with the Kanto Local Finance Bureau (June 5, 2026)."},

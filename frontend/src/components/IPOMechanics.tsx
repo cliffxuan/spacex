@@ -1,9 +1,11 @@
 import { Section, Card, SourceLink } from "./Section";
-import { data, SEC_URL, AMENDMENT_URL } from "../data";
-import { Vote, Lock, Building2, Coins, Banknote, AlertTriangle, Tag } from "lucide-react";
+import { data, SEC_URL, AMENDMENT_URL, fmtDate } from "../data";
+import { Vote, Lock, Building2, Coins, Banknote, AlertTriangle, Tag, CalendarClock, LineChart } from "lucide-react";
 
 export function IPOMechanics() {
   const p = data.ipo.pricing;
+  const t = data.ipo.expected_timeline;
+  const io = data.ipo.index_outlook;
   return (
     <Section
       id="ipo"
@@ -29,6 +31,25 @@ export function IPOMechanics() {
               <span className="text-emerald-300 tabular">~${p.implied_ipo_valuation_usd_trillions}T</span>{" "}
               fully-diluted valuation.{" "}
               <SourceLink href={AMENDMENT_URL}>S-1/A No. 2 — The Offering</SourceLink>
+            </>
+          }
+        />
+
+        <MechanicCard
+          icon={<CalendarClock size={18} />}
+          title="Key dates"
+          tone="from-cyan-500/15"
+          body={
+            <>
+              The roadshow opened{" "}
+              <span className="text-zinc-100">{fmtDate(t.roadshow_start)}</span>. The final price is
+              expected to be set on{" "}
+              <span className="text-cyan-300">{fmtDate(t.pricing_date)}</span>, with{" "}
+              <span className="font-mono text-cyan-300">{data.ipo.ticker}</span> expected to begin
+              trading on {t.exchange} on{" "}
+              <span className="text-cyan-300">{fmtDate(t.trading_start)}</span> (settlement{" "}
+              {fmtDate(t.settlement_date)}).{" "}
+              <SourceLink href={AMENDMENT_URL}>IPO factsheet · offer timetable</SourceLink>
             </>
           }
         />
@@ -124,12 +145,72 @@ export function IPOMechanics() {
         />
       </div>
 
+      <Card className="mt-6 bg-gradient-to-br from-indigo-500/[0.06] via-zinc-900/60 to-zinc-950/80">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-indigo-300/80">
+            <LineChart size={14} /> Index outlook
+          </div>
+          <span className="rounded-full border border-zinc-700/60 px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
+            Our analysis · not the S-1
+          </span>
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <IndexRow
+            name="Nasdaq-100"
+            status={io.nasdaq_100.status}
+            estimate={io.nasdaq_100.estimate}
+            detail={io.nasdaq_100.detail}
+            href={io.nasdaq_100.source_url}
+            tone="text-emerald-300"
+          />
+          <IndexRow
+            name="S&P 500"
+            status={io.sp_500.status}
+            estimate={io.sp_500.estimate}
+            detail={io.sp_500.detail}
+            href={io.sp_500.source_url}
+            tone="text-amber-300"
+          />
+        </div>
+        <p className="mt-4 text-[11px] text-zinc-500">{io.disclaimer}</p>
+      </Card>
+
       <div className="mt-6 rounded-2xl border border-amber-500/20 bg-amber-500/[0.04] p-5 text-sm text-amber-100/80">
         <strong className="text-amber-200">Translation: </strong> Your shares get a
         cashflow claim and a public price, but very little governance leverage. If you don't
         believe in Elon Musk's stewardship, this is not the security for you.
       </div>
     </Section>
+  );
+}
+
+function IndexRow({
+  name,
+  status,
+  estimate,
+  detail,
+  href,
+  tone,
+}: {
+  name: string;
+  status: string;
+  estimate: string;
+  detail: string;
+  href: string;
+  tone: string;
+}) {
+  return (
+    <div className="rounded-xl border border-zinc-800/70 bg-zinc-950/40 p-4">
+      <div className="flex items-baseline justify-between">
+        <h4 className="font-mono text-sm font-semibold text-zinc-100">{name}</h4>
+        <span className={`text-xs font-semibold ${tone}`}>{status}</span>
+      </div>
+      <div className="mt-1 text-[11px] uppercase tracking-wider text-zinc-500">{estimate}</div>
+      <p className="mt-2 text-xs leading-relaxed text-zinc-400">{detail}</p>
+      <div className="mt-2">
+        <SourceLink href={href}>Index methodology</SourceLink>
+      </div>
+    </div>
   );
 }
 

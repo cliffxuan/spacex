@@ -1,5 +1,5 @@
 import { ArrowDown, ExternalLink } from "lucide-react";
-import { data, SEC_URL } from "../data";
+import { data, SEC_URL, fmtDate } from "../data";
 
 export function Hero() {
   const fy25 = data.financials.annual.find((y) => y.year === 2025)!;
@@ -29,7 +29,7 @@ export function Hero() {
           <div className="sm:col-span-8">
             <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-cyan-400">
               <span className="mr-2 inline-block h-2 w-2 -translate-y-px rounded-full bg-cyan-400 pulse-dot align-middle" />
-              S-1 filed 20 May 2026 · Priced at $135 via S-1/A No. 2 (3 Jun 2026)
+              S-1 filed 20 May 2026 · Prices {fmtDate(data.ipo.expected_timeline.pricing_date)} · Trades {fmtDate(data.ipo.expected_timeline.trading_start)}
             </div>
             <h1 className="mt-6 text-5xl font-semibold leading-[0.95] tracking-tighter glow-text sm:text-7xl md:text-[88px]">
               SpaceX is going public.
@@ -83,10 +83,12 @@ export function Hero() {
                 <Row k="IPO price" v={`$${data.ipo.pricing.price_per_share_usd.toFixed(2)}`} />
                 <Row k="Shares offered" v={`${(data.ipo.pricing.shares_offered / 1e6).toFixed(1)}M`} />
                 <Row k="Gross proceeds" v={`~$${data.ipo.pricing.gross_proceeds_usd_billions}B`} />
+                <Row k="Implied val." v={`~$${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T`} />
+                <Row k="Prices on" v={fmtDate(data.ipo.expected_timeline.pricing_date)} />
+                <Row k="Trades from" v={fmtDate(data.ipo.expected_timeline.trading_start)} />
                 <Row k="Exchange" v={data.ipo.exchange} />
                 <Row k="Voting (A · B)" v={`1× · 10×`} />
                 <Row k="Lock-up" v={`${data.ipo.lock_up_days} days`} />
-                <Row k="Controlled co." v="Yes" />
               </dl>
             </div>
             <div className="mt-3 px-1 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
