@@ -1,5 +1,5 @@
 import { Section, Card, SourceLink } from "./Section";
-import { data, SEC_URL } from "../data";
+import { data, SEC_URL, AMENDMENT_INDEX_URL } from "../data";
 import {
   Banknote,
   Rocket,
@@ -51,7 +51,7 @@ export function Snapshot() {
       icon: <Banknote size={18} />,
       label: "IPO raise (S-1/A)",
       value: `~$${data.ipo.pricing.gross_proceeds_usd_billions}B`,
-      sub: `${(data.ipo.pricing.shares_offered / 1e6).toFixed(0)}M shares @ $${data.ipo.pricing.price_per_share_usd.toFixed(0)} · ~$${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T valuation`,
+      sub: `${(data.ipo.pricing.shares_offered / 1e6).toFixed(1)}M shares @ $${data.ipo.pricing.price_per_share_usd.toFixed(2)} · ~$${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T valuation`,
       accent: "text-emerald-300",
     },
     {
@@ -95,10 +95,10 @@ export function Snapshot() {
       </div>
 
       <p className="mt-6 text-sm text-zinc-500">
-        This is a preliminary S-1 — pricing, shares offered, and underwriters are still
-        placeholders. Pull the latest from{" "}
-        <SourceLink href={data.filing_metadata.filing_index_url}>SEC EDGAR</SourceLink>{" "}
-        when the price-range amendment lands.
+        These figures reflect the pricing terms set in Amendment No. 2 to the S-1, filed June 3, 2026.
+        Pull the latest updates directly from the{" "}
+        <SourceLink href={AMENDMENT_INDEX_URL}>S-1/A Filing Index on SEC EDGAR</SourceLink>
+        .
       </p>
     </Section>
   );

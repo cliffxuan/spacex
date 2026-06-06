@@ -21,7 +21,7 @@ export function IPOMechanics() {
           body={
             <>
               The amendment set the offering at{" "}
-              <span className="text-zinc-100 tabular">{(p.shares_offered / 1e6).toFixed(0)}M shares</span>{" "}
+              <span className="text-zinc-100 tabular">{(p.shares_offered / 1e6).toFixed(1)}M shares</span>{" "}
               of Class A at{" "}
               <span className="text-emerald-300 tabular">${p.price_per_share_usd.toFixed(2)}</span> —
               roughly <span className="text-zinc-100 tabular">${p.gross_proceeds_usd_billions}B</span> in gross

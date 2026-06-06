@@ -102,10 +102,10 @@ export function Customers() {
             </div>
             <h3 className="mt-2 text-xl font-semibold">Google compute deal</h3>
             <div className="mt-4 grid grid-cols-2 gap-3 text-center text-sm">
-              <Stat2 label="Monthly fee" value={`$${data.customers.google_deal.monthly_fee_billions.toFixed(2)}B`} />
-              <Stat2 label="GPUs" value={`${(data.customers.google_deal.gpus / 1000).toFixed(0)}K`} />
-              <Stat2 label="Annualized" value={`~$${data.customers.google_deal.annualized_billions}B`} />
-              <Stat2 label="Window" value="Oct '26–Jun '29" />
+              <Stat2 label="Monthly fee" value={`$${data.customers.google_deal.monthly_fee_billions.toFixed(2)}B`} accent="text-cyan-300" />
+              <Stat2 label="GPUs" value={`${(data.customers.google_deal.gpus / 1000).toFixed(0)}K`} accent="text-cyan-300" />
+              <Stat2 label="Annualized" value={`~$${data.customers.google_deal.annualized_billions}B`} accent="text-cyan-300" />
+              <Stat2 label="Window" value="Oct '26–Jun '29" accent="text-cyan-300" />
             </div>
             <p className="mt-4 text-xs text-zinc-500">
               Signed June 5, 2026 (disclosed in a free writing prospectus): ~110,000 NVIDIA GPUs,
@@ -149,10 +149,10 @@ export function Customers() {
   );
 }
 
-function Stat2({ label, value }: { label: string; value: string }) {
+function Stat2({ label, value, accent = "text-indigo-300" }: { label: string; value: string; accent?: string }) {
   return (
     <div className="rounded-lg bg-zinc-950/40 px-3 py-2">
-      <div className="text-lg font-semibold tabular text-indigo-300">{value}</div>
+      <div className={`text-lg font-semibold tabular ${accent}`}>{value}</div>
       <div className="mt-1 text-[10px] uppercase tracking-wider text-zinc-500">{label}</div>
     </div>
   );

@@ -81,7 +81,7 @@ export function Hero() {
               </div>
               <dl className="mt-4 space-y-3 text-sm">
                 <Row k="IPO price" v={`$${data.ipo.pricing.price_per_share_usd.toFixed(2)}`} />
-                <Row k="Shares offered" v={`${(data.ipo.pricing.shares_offered / 1e6).toFixed(0)}M`} />
+                <Row k="Shares offered" v={`${(data.ipo.pricing.shares_offered / 1e6).toFixed(1)}M`} />
                 <Row k="Gross proceeds" v={`~$${data.ipo.pricing.gross_proceeds_usd_billions}B`} />
                 <Row k="Exchange" v={data.ipo.exchange} />
                 <Row k="Voting (A · B)" v={`1× · 10×`} />

@@ -80,7 +80,7 @@ export function Valuation() {
               <Row k="Class C 409A — May 2025" v={`$${data.valuation.class_c_409a_may_2025.toFixed(2)}`} />
               <Row k="Class C 409A — Oct 2025" v={`$${data.valuation.class_c_409a_oct_2025.toFixed(2)}`} />
               <Row k="IPO price — Jun 2026 (S-1/A)" v={`$${p.price_per_share_usd.toFixed(2)}`} />
-              <Row k="Shares offered" v={`${(p.shares_offered / 1e6).toFixed(0)}M`} />
+              <Row k="Shares offered" v={`${(p.shares_offered / 1e6).toFixed(1)}M`} />
               <Row k="Gross proceeds" v={`~$${p.gross_proceeds_usd_billions}B`} />
               <Row k="Total shares outstanding" v={`${(p.total_shares_outstanding / 1e9).toFixed(2)}B`} />
               <Row k="Implied IPO valuation" v={`~$${p.implied_ipo_valuation_usd_trillions}T`} />
