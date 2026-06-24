@@ -8,7 +8,7 @@ export function UseOfProceeds() {
       id="use"
       eyebrow="Section 09 · Where the money goes"
       title="Use of proceeds"
-      blurb="By contract, the first $20B of net proceeds repays the bridge loan. The rest funds the long-term thesis."
+      blurb="By contract, the first $20B of net proceeds was earmarked to repay the bridge loan. The rest funds the long-term thesis."
       sourceUrl={SEC_URL}
       sourceLabel="Use of Proceeds (p. 67)"
     >
@@ -35,9 +35,9 @@ export function UseOfProceeds() {
           </div>
           <h3 className="mt-2 text-2xl font-semibold">$20.0B mandatory repayment</h3>
           <p className="mt-3 text-sm text-zinc-400">
-            Net proceeds of a qualified IPO are required by covenant to repay the SpaceX
-            Bridge Loan. Maturity:{" "}
-            <span className="text-zinc-200">Sept 2, 2027</span>.
+            Net proceeds of the IPO were required by covenant to repay the SpaceX
+            Bridge Loan — earmarked to clear it ahead of its{" "}
+            <span className="text-zinc-200">Sept 2, 2027</span> maturity.
           </p>
           <div className="mt-5 grid grid-cols-2 gap-3 text-center text-sm">
             <Mini label="Bridge loan" value="$20.0B" />

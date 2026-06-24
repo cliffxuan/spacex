@@ -9,9 +9,9 @@ export function IPOMechanics() {
   return (
     <Section
       id="ipo"
-      eyebrow="Section 02 · How this offering is structured"
+      eyebrow="Section 02 · How this offering was structured"
       title="The mechanics, in plain English"
-      blurb="Public capital — but private-style control. Read this before you read the rest. Pricing terms below are from S-1/A Amendment No. 2 (June 3, 2026)."
+      blurb="Public capital — but private-style control. The terms that took SpaceX public, in plain English. Pricing below is from S-1/A Amendment No. 2 (June 3, 2026)."
       sourceUrl={AMENDMENT_URL}
       sourceLabel="S-1/A No. 2 · The Offering · Description of Capital Stock"
     >
@@ -27,9 +27,9 @@ export function IPOMechanics() {
               of Class A at{" "}
               <span className="text-emerald-300 tabular">${p.price_per_share_usd.toFixed(2)}</span> —
               roughly <span className="text-zinc-100 tabular">${p.gross_proceeds_usd_billions}B</span> in gross
-              proceeds. That implies a{" "}
+              proceeds. That implied a{" "}
               <span className="text-emerald-300 tabular">~${p.implied_ipo_valuation_usd_trillions}T</span>{" "}
-              fully-diluted valuation.{" "}
+              fully-diluted valuation at IPO.{" "}
               <SourceLink href={AMENDMENT_URL}>S-1/A No. 2 — The Offering</SourceLink>
             </>
           }
@@ -42,12 +42,12 @@ export function IPOMechanics() {
           body={
             <>
               The roadshow opened{" "}
-              <span className="text-zinc-100">{fmtDate(t.roadshow_start)}</span>. The final price is
-              expected to be set on{" "}
-              <span className="text-cyan-300">{fmtDate(t.pricing_date)}</span>, with{" "}
-              <span className="font-mono text-cyan-300">{data.ipo.ticker}</span> expected to begin
+              <span className="text-zinc-100">{fmtDate(t.roadshow_start)}</span>. The final price was
+              set on{" "}
+              <span className="text-cyan-300">{fmtDate(t.pricing_date)}</span>, and{" "}
+              <span className="font-mono text-cyan-300">{data.ipo.ticker}</span> began
               trading on {t.exchange} on{" "}
-              <span className="text-cyan-300">{fmtDate(t.trading_start)}</span> (settlement{" "}
+              <span className="text-cyan-300">{fmtDate(t.trading_start)}</span> (settled{" "}
               {fmtDate(t.settlement_date)}).{" "}
               <SourceLink href={AMENDMENT_URL}>IPO factsheet · offer timetable</SourceLink>
             </>
@@ -79,7 +79,7 @@ export function IPOMechanics() {
           tone="from-amber-500/15"
           body={
             <>
-              SpaceX will be a <span className="text-zinc-100">"controlled company"</span>{" "}
+              SpaceX is a <span className="text-zinc-100">"controlled company"</span>{" "}
               under Nasdaq rules — exempted from several governance requirements (independent
               compensation committee, etc.). Musk personally controls{" "}
               <span className="text-amber-300">
@@ -98,8 +98,9 @@ export function IPOMechanics() {
             <>
               Insiders cannot sell for{" "}
               <span className="text-zinc-100">{data.ipo.lock_up_days} days</span> after
-              pricing — though the underwriters can release early, and a "directed share
-              program" of employees is exempt.
+              pricing — so the lock-up runs into{" "}
+              <span className="text-zinc-100">{fmtDate("2026-12-08")}</span>. The underwriters
+              can release early, and a "directed share program" of employees is exempt.
             </>
           }
         />
@@ -110,10 +111,9 @@ export function IPOMechanics() {
           tone="from-cyan-500/15"
           body={
             <>
-              Class A common stock will trade as{" "}
+              Class A common stock trades as{" "}
               <span className="font-mono text-cyan-300">{data.ipo.ticker}</span> on{" "}
-              {data.ipo.exchange}. The filing notes the offering will be listed dually on
-              Nasdaq's new Texas venue.
+              {data.ipo.exchange} — listed dually on Nasdaq's new Texas venue.
             </>
           }
         />
@@ -136,9 +136,9 @@ export function IPOMechanics() {
           tone="from-red-500/15"
           body={
             <>
-              By contract, net IPO proceeds must first repay the{" "}
-              <span className="text-red-300">$20B SpaceX Bridge Loan</span> — which matures
-              Sept 2, 2027.{" "}
+              By contract, net IPO proceeds were earmarked to repay the{" "}
+              <span className="text-red-300">$20B SpaceX Bridge Loan</span> first — ahead of its
+              Sept 2, 2027 maturity.{" "}
               <SourceLink href={SEC_URL}>Use of Proceeds</SourceLink>
             </>
           }
