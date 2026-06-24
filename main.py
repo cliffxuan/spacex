@@ -14,6 +14,8 @@ app = FastAPI(title="SPCX · SpaceX IPO, charted")
 # --- Live price tracker: pre-IPO perp (Hyperliquid) vs. listed stock (Nasdaq) ---
 IPO_PRICE = 135.0
 LISTING_DATE = "2026-06-12"
+# Total shares outstanding post-offering (S-1/A No. 2). Used for live market cap.
+SHARES_OUTSTANDING = 12_520_309_620
 PERP_COIN = "xyz:SPCX"
 STOCK_SYMBOL = "SPCX"
 HL_URL = "https://api.hyperliquid.xyz/info"
@@ -99,19 +101,29 @@ def _build_payload() -> dict:
     dates = sorted(set(perp) | set(stock))
     series = [{"date": d, "perp": perp.get(d), "stock": stock.get(d)} for d in dates]
 
-    def _last(key: str) -> float | None:
-        for pt in reversed(series):
-            if pt[key] is not None:
-                return pt[key]
-        return None
+    def _last_two(key: str) -> tuple[float | None, float | None]:
+        """Most-recent and prior non-null close for a series (for day change)."""
+        vals = [pt[key] for pt in series if pt[key] is not None]
+        last = vals[-1] if vals else None
+        prev = vals[-2] if len(vals) > 1 else None
+        return last, prev
+
+    perp_last, perp_prev = _last_two("perp")
+    stock_last, stock_prev = _last_two("stock")
 
     return {
         "ipo_price": IPO_PRICE,
         "listing_date": LISTING_DATE,
         "perp_source": "Hyperliquid · xyz:SPCX (pre-IPO perp)",
         "stock_source": "Nasdaq · SPCX (via Yahoo Finance)",
+        "shares_outstanding": SHARES_OUTSTANDING,
         "series": series,
-        "latest": {"perp": _last("perp"), "stock": _last("stock")},
+        "latest": {
+            "perp": perp_last,
+            "perp_prev": perp_prev,
+            "stock": stock_last,
+            "stock_prev": stock_prev,
+        },
         "updated": int(time.time()),
     }
 

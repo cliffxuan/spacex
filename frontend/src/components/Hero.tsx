@@ -1,18 +1,28 @@
-import { ArrowDown, ExternalLink } from "lucide-react";
+import { ArrowDown, ExternalLink, TrendingUp, TrendingDown } from "lucide-react";
 import { data, SEC_URL, fmtDate } from "../data";
+import { usePrices, pctChange } from "../usePrices";
 
 export function Hero() {
   const fy25 = data.financials.annual.find((y) => y.year === 2025)!;
   const subs = data.starlink.subscribers_millions.at(-1)!.value;
   const sats = data.starlink.satellites_in_orbit_mar_31_2026;
   const ebitda = data.financials.adjusted_ebitda_FY2025;
+
+  const { data: px } = usePrices();
+  const ipo = data.ipo.pricing.price_per_share_usd;
+  const price = px?.latest.stock ?? null;
+  const dayChg = pctChange(price, px?.latest.stock_prev);
+  const vsIpo = pctChange(price, ipo);
+  const shares = px?.shares_outstanding ?? data.ipo.pricing.total_shares_outstanding;
+  const mktCapT = price != null ? (price * shares) / 1e12 : null;
+
   return (
     <header className="starfield relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
       <div className="relative mx-auto max-w-6xl px-5 pt-16 pb-24 sm:pt-24 sm:pb-32">
         <div className="flex items-center justify-between">
           <div className="font-mono text-xs tracking-[0.3em] text-cyan-300/80">
-            ALGOENTROPY · IPO PRIMER
+            ALGOENTROPY · LISTED EQUITY
           </div>
           <a
             href={SEC_URL}
@@ -28,14 +38,14 @@ export function Hero() {
         <div className="mt-16 grid items-end gap-10 sm:mt-24 sm:grid-cols-12">
           <div className="sm:col-span-8">
             <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-cyan-400">
-              <span className="mr-2 inline-block h-2 w-2 -translate-y-px rounded-full bg-cyan-400 pulse-dot align-middle" />
-              S-1 filed 20 May 2026 · Prices {fmtDate(data.ipo.expected_timeline.pricing_date)} · Trades {fmtDate(data.ipo.expected_timeline.trading_start)}
+              <span className="mr-2 inline-block h-2 w-2 -translate-y-px rounded-full bg-emerald-400 pulse-dot align-middle" />
+              Listed on Nasdaq {fmtDate(data.ipo.expected_timeline.trading_start)} · Live SPCX quote
             </div>
             <h1 className="mt-6 text-5xl font-semibold leading-[0.95] tracking-tighter glow-text sm:text-7xl md:text-[88px]">
-              SpaceX is going public.
+              SpaceX is public.
               <br />
               <span className="bg-gradient-to-r from-zinc-100 via-cyan-200 to-indigo-300 bg-clip-text text-transparent">
-                Here's the prospectus, charted.
+                The prospectus, now trading.
               </span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg text-zinc-300">
@@ -49,15 +59,15 @@ export function Hero() {
               >
                 Form S-1 filed with the SEC
               </a>
-              . Every number on this page links back to its source.
+              , now tracking SPCX live on Nasdaq. Every number links back to its source.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
-                href="#snapshot"
+                href="#market"
                 className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-medium text-zinc-950 transition hover:bg-cyan-300"
               >
-                Explore the data
+                See the live price
                 <ArrowDown size={14} />
               </a>
               <a
@@ -73,26 +83,31 @@ export function Hero() {
             <div className="rounded-2xl border border-zinc-800 bg-black/30 p-5 backdrop-blur-md">
               <div className="flex items-baseline justify-between border-b border-zinc-800 pb-3">
                 <span className="font-mono text-xs tracking-[0.25em] text-zinc-400">
-                  TICKER
+                  {data.ipo.ticker} · NASDAQ
                 </span>
-                <span className="font-mono text-2xl font-bold tracking-tight text-cyan-300">
-                  {data.ipo.ticker}
+                <span className="font-mono text-2xl font-bold tracking-tight text-emerald-300">
+                  {price != null ? `$${price.toFixed(2)}` : "—"}
                 </span>
               </div>
+              {price != null && (dayChg != null || vsIpo != null) && (
+                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
+                  {dayChg != null && <Delta pct={dayChg} label="today" />}
+                  {vsIpo != null && <Delta pct={vsIpo} label="vs IPO" />}
+                </div>
+              )}
               <dl className="mt-4 space-y-3 text-sm">
-                <Row k="IPO price" v={`$${data.ipo.pricing.price_per_share_usd.toFixed(2)}`} />
-                <Row k="Shares offered" v={`${(data.ipo.pricing.shares_offered / 1e6).toFixed(1)}M`} />
-                <Row k="Gross proceeds" v={`~$${data.ipo.pricing.gross_proceeds_usd_billions}B`} />
-                <Row k="Implied val." v={`~$${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T`} />
-                <Row k="Prices on" v={fmtDate(data.ipo.expected_timeline.pricing_date)} />
-                <Row k="Trades from" v={fmtDate(data.ipo.expected_timeline.trading_start)} />
+                <Row k="Market cap" v={mktCapT != null ? `~$${mktCapT.toFixed(2)}T` : "—"} />
+                <Row k="IPO price" v={`$${ipo.toFixed(2)}`} />
+                <Row k="Listed" v={fmtDate(data.ipo.expected_timeline.trading_start)} />
                 <Row k="Exchange" v={data.ipo.exchange} />
                 <Row k="Voting (A · B)" v={`1× · 10×`} />
                 <Row k="Lock-up" v={`${data.ipo.lock_up_days} days`} />
               </dl>
             </div>
             <div className="mt-3 px-1 text-[10px] font-mono uppercase tracking-widest text-zinc-500">
-              Priced at ${data.ipo.pricing.price_per_share_usd.toFixed(2)} in S-1/A No. 2 — ~${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T implied valuation.
+              {price != null
+                ? `Live · ${(shares / 1e9).toFixed(2)}B shares out · refreshes ~1 min`
+                : `IPO priced at $${ipo.toFixed(2)} — ~$${data.ipo.pricing.implied_ipo_valuation_usd_trillions}T implied valuation.`}
             </div>
           </div>
         </div>
@@ -125,6 +140,18 @@ export function Hero() {
       </div>
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#050608]" />
     </header>
+  );
+}
+
+function Delta({ pct, label }: { pct: number; label: string }) {
+  const up = pct >= 0;
+  return (
+    <span className={`inline-flex items-center gap-1 font-mono ${up ? "text-emerald-400" : "text-red-400"}`}>
+      {up ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+      {up ? "+" : ""}
+      {pct.toFixed(1)}%
+      <span className="text-zinc-500">{label}</span>
+    </span>
   );
 }
 

@@ -65,6 +65,7 @@ export default function App() {
       <Nav />
       <main>
         <Snapshot />
+        <PriceTracker />
         <IPOMechanics />
         <Financials />
         <Segments />
@@ -74,7 +75,6 @@ export default function App() {
         <Customers />
         <Risks />
         <Valuation />
-        <PriceTracker />
         <UseOfProceeds />
         <Management />
         <Litigation />

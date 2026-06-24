@@ -1,5 +1,6 @@
 const ITEMS = [
   { id: "snapshot", label: "Snapshot" },
+  { id: "market", label: "Market" },
   { id: "ipo", label: "IPO Mechanics" },
   { id: "financials", label: "Financials" },
   { id: "segments", label: "Segments" },
@@ -8,7 +9,6 @@ const ITEMS = [
   { id: "starship", label: "Starship" },
   { id: "customers", label: "Customers" },
   { id: "risks", label: "Risks" },
-  { id: "market", label: "Market" },
   { id: "use", label: "Use of Proceeds" },
   { id: "management", label: "Management" },
   { id: "litigation", label: "Litigation" },

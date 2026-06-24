@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   CartesianGrid,
   Line,
@@ -11,57 +11,27 @@ import {
 } from "recharts";
 import { Section, Card, Stat, SourceLink } from "./Section";
 import { fmtDate } from "../data";
+import { usePrices, pctChange } from "../usePrices";
 import { Activity, TrendingUp, TrendingDown } from "lucide-react";
-
-type Point = { date: string; perp: number | null; stock: number | null };
-type Payload = {
-  ipo_price: number;
-  listing_date: string;
-  perp_source: string;
-  stock_source: string;
-  series: Point[];
-  latest: { perp: number | null; stock: number | null };
-  updated: number;
-};
 
 const HL_URL = "https://app.hyperliquid.xyz/trade/xyz:SPCX";
 
 export function PriceTracker() {
-  const [d, setD] = useState<Payload | null>(null);
-  const [err, setErr] = useState(false);
-
-  useEffect(() => {
-    let alive = true;
-    const load = () =>
-      fetch("/api/prices")
-        .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-        .then((j: Payload) => {
-          if (alive) {
-            setD(j);
-            setErr(false);
-          }
-        })
-        .catch(() => alive && setErr(true));
-    load();
-    const id = setInterval(load, 60_000);
-    return () => {
-      alive = false;
-      clearInterval(id);
-    };
-  }, []);
+  const { data: d, err } = usePrices();
 
   const ipo = d?.ipo_price ?? 135;
   const perp = d?.latest.perp ?? null;
   const stock = d?.latest.stock ?? null;
-  const perpVsIpo = perp != null ? ((perp - ipo) / ipo) * 100 : null;
+  const stockVsIpo = pctChange(stock, ipo);
+  const stockDay = pctChange(stock, d?.latest.stock_prev);
   const listed = stock != null;
 
   return (
     <Section
       id="market"
-      eyebrow="Section 13 · The market, live"
-      title="Pre-IPO perp vs. the listed price"
-      blurb="How Hyperliquid's pre-IPO perpetual tracked SpaceX before listing — and, once it lists, how the real Nasdaq price compares. The perp is a third-party derivative, not the official SPCX stock."
+      eyebrow="Live · The market"
+      title="SPCX, live on Nasdaq"
+      blurb="The real Nasdaq close since SpaceX listed on 12 Jun 2026, against Hyperliquid's pre-IPO perpetual that tracked it beforehand. The $135 IPO price is marked for reference. The perp is a third-party derivative, not the official SPCX stock."
       sourceUrl={HL_URL}
       sourceLabel="Hyperliquid · xyz:SPCX"
     >
@@ -156,30 +126,29 @@ export function PriceTracker() {
         </Card>
 
         <div className="space-y-5 lg:col-span-4">
-          <Card className="bg-gradient-to-br from-cyan-500/[0.07] via-zinc-900/60 to-zinc-950/80">
+          <Card className="bg-gradient-to-br from-emerald-500/[0.08] via-zinc-900/60 to-zinc-950/80">
             <Stat
-              label="Pre-IPO perp · latest"
-              value={perp != null ? `$${perp.toFixed(2)}` : "—"}
-              accent="text-cyan-300"
+              label="SPCX · Nasdaq"
+              value={listed ? `$${stock!.toFixed(2)}` : "Not yet listed"}
+              accent={listed ? "text-emerald-300" : "text-zinc-500"}
               sub={
-                perpVsIpo != null ? (
-                  <span className={perpVsIpo >= 0 ? "text-emerald-400" : "text-red-400"}>
-                    {perpVsIpo >= 0 ? <TrendingUp size={12} className="inline" /> : <TrendingDown size={12} className="inline" />}{" "}
-                    {perpVsIpo >= 0 ? "+" : ""}
-                    {perpVsIpo.toFixed(1)}% vs $135 IPO price
+                listed ? (
+                  <span className="flex flex-wrap gap-x-3 gap-y-1">
+                    {stockDay != null && <Delta pct={stockDay} label="today" />}
+                    {stockVsIpo != null && <Delta pct={stockVsIpo} label="vs $135 IPO" />}
                   </span>
                 ) : (
-                  "Hyperliquid xyz:SPCX"
+                  `Begins trading ${d ? fmtDate(d.listing_date) : "12 Jun 2026"}`
                 )
               }
             />
           </Card>
           <Card>
             <Stat
-              label="Listed stock · latest"
-              value={listed ? `$${stock!.toFixed(2)}` : "Not yet listed"}
-              accent={listed ? "text-emerald-300" : "text-zinc-500"}
-              sub={listed ? "Nasdaq · SPCX" : `Begins trading ${d ? fmtDate(d.listing_date) : "12 Jun 2026"}`}
+              label="Pre-IPO perp · latest"
+              value={perp != null ? `$${perp.toFixed(2)}` : "—"}
+              accent="text-cyan-300"
+              sub="Hyperliquid · xyz:SPCX"
             />
           </Card>
           <p className="text-[11px] leading-relaxed text-zinc-500">
@@ -191,6 +160,17 @@ export function PriceTracker() {
         </div>
       </div>
     </Section>
+  );
+}
+
+function Delta({ pct, label }: { pct: number; label: string }) {
+  const up = pct >= 0;
+  return (
+    <span className={up ? "text-emerald-400" : "text-red-400"}>
+      {up ? <TrendingUp size={12} className="inline" /> : <TrendingDown size={12} className="inline" />}{" "}
+      {up ? "+" : ""}
+      {pct.toFixed(1)}% <span className="text-zinc-500">{label}</span>
+    </span>
   );
 }
 
