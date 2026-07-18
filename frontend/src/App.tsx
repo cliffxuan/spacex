@@ -12,6 +12,7 @@ import { Customers } from "./components/Customers";
 import { Risks } from "./components/Risks";
 import { Valuation } from "./components/Valuation";
 import { PriceTracker } from "./components/PriceTracker";
+import { Track } from "./components/Track";
 import { UseOfProceeds } from "./components/UseOfProceeds";
 import { Management } from "./components/Management";
 import { Litigation } from "./components/Litigation";
@@ -66,6 +67,7 @@ export default function App() {
       <main>
         <Snapshot />
         <PriceTracker />
+        <Track />
         <IPOMechanics />
         <Financials />
         <Segments />

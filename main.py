@@ -29,9 +29,14 @@ _cache: dict[str, object] = {"ts": 0.0, "data": None}
 
 
 def _http_json(
-    url: str, *, method: str = "GET", body: dict | None = None, timeout: int = 8
+    url: str,
+    *,
+    method: str = "GET",
+    body: dict | None = None,
+    timeout: int = 8,
+    user_agent: str = "Mozilla/5.0 (SPCX-site price tracker)",
 ) -> dict | list:
-    headers = {"User-Agent": "Mozilla/5.0 (SPCX-site price tracker)"}
+    headers = {"User-Agent": user_agent}
     data = None
     if body is not None:
         data = json.dumps(body).encode()
@@ -135,6 +140,60 @@ def prices() -> JSONResponse:
         _cache["data"] = _build_payload()
         _cache["ts"] = now
     return JSONResponse(_cache["data"])
+
+
+# --- SEC filings feed: latest EDGAR submissions for SpaceX (CIK 1181412) ---
+SEC_CIK = "0001181412"
+SEC_SUBMISSIONS_URL = f"https://data.sec.gov/submissions/CIK{SEC_CIK}.json"
+# SEC requires a User-Agent identifying the requester (403 otherwise).
+SEC_UA = "spacex.algoentropy.com filings tracker (cliff.xuan@gresearch.co.uk)"
+FILINGS_TTL = 600.0  # seconds — EDGAR asks for gentle polling
+FILINGS_LIMIT = 12
+
+_filings_cache: dict[str, object] = {"ts": 0.0, "data": None}
+
+
+def _fetch_filings() -> dict:
+    raw = _http_json(SEC_SUBMISSIONS_URL, user_agent=SEC_UA)
+    recent = raw["filings"]["recent"]
+    n = len(recent["form"])
+    descriptions = recent.get("primaryDocDescription") or [""] * n
+    filings = []
+    for i in range(min(FILINGS_LIMIT, n)):
+        accession = recent["accessionNumber"][i].replace("-", "")
+        filings.append(
+            {
+                "form": recent["form"][i],
+                "filed": recent["filingDate"][i],
+                "description": descriptions[i] or recent["form"][i],
+                "url": (
+                    f"https://www.sec.gov/Archives/edgar/data/{int(SEC_CIK)}/"
+                    f"{accession}/{recent['primaryDocument'][i]}"
+                ),
+            }
+        )
+    return {
+        "company": raw.get("name", "Space Exploration Technologies Corp"),
+        "cik": SEC_CIK,
+        "source": "SEC EDGAR",
+        "filings": filings,
+        "updated": int(time.time()),
+    }
+
+
+@app.get("/api/filings")
+def filings() -> JSONResponse:
+    now = time.time()
+    if _filings_cache["data"] is None or now - float(_filings_cache["ts"]) > FILINGS_TTL:
+        try:
+            _filings_cache["data"] = _fetch_filings()
+            _filings_cache["ts"] = now
+        except Exception:  # noqa: BLE001 — serve stale (or empty) over a 500
+            if _filings_cache["data"] is None:
+                return JSONResponse(
+                    {"company": None, "cik": SEC_CIK, "source": "SEC EDGAR", "filings": [], "updated": 0}
+                )
+    return JSONResponse(_filings_cache["data"])
 
 
 @app.get("/healthz")

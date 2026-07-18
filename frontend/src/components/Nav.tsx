@@ -1,6 +1,7 @@
 const ITEMS = [
   { id: "snapshot", label: "Snapshot" },
   { id: "market", label: "Market" },
+  { id: "track", label: "Track" },
   { id: "ipo", label: "IPO Mechanics" },
   { id: "financials", label: "Financials" },
   { id: "segments", label: "Segments" },
