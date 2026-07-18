@@ -54,6 +54,11 @@ Merges two daily-close series keyed by date:
   actually trades (lists 2026-06-12). Pre-listing placeholder quotes (vendors seed the
   IPO price) are filtered out by dropping dates `< LISTING_DATE`.
 
+There is also `GET /api/filings` — latest SEC EDGAR submissions for CIK 1181412
+(10-min cache, serves stale data if EDGAR is down; the SEC User-Agent requirement is
+handled in `main.py`). Rendered by `components/Track.tsx` (event calendar, live
+valuation panel, filings feed).
+
 60s in-memory cache; resilient (one source failing won't 500). After 2026-06-12,
 sanity-check that the real-price line populated; Yahoo is an unofficial endpoint — if
 it breaks, swap `_fetch_stock` for a keyed provider. Rendered by
