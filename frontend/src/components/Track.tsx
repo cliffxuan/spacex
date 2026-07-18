@@ -77,11 +77,17 @@ export function Track() {
             <EventRow
               name="Lock-up expiry"
               when={fmtDate(lockupDate)}
-              chip={lockupDays > 0 ? `${lockupDays} days away` : "Passed"}
+              chip={
+                lockupDays > 0
+                  ? `${lockupDays} day${lockupDays === 1 ? "" : "s"} away`
+                  : "Passed"
+              }
               chipTone={
-                lockupDays > 0 && lockupDays <= 30
-                  ? "border-red-500/40 text-red-300"
-                  : "border-amber-500/40 text-amber-300"
+                lockupDays <= 0
+                  ? "border-zinc-600/60 text-zinc-400"
+                  : lockupDays <= 30
+                    ? "border-red-500/40 text-red-300"
+                    : "border-amber-500/40 text-amber-300"
               }
             >
               {ipo.lock_up_days} days after the {fmtDate(ipo.expected_timeline.pricing_date)} pricing.
@@ -183,10 +189,10 @@ export function Track() {
                     href={f.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 py-2.5 text-sm transition hover:bg-zinc-900/40"
+                    className="group -mx-3 flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition hover:bg-zinc-900/40"
                   >
                     <span
-                      className={`w-16 shrink-0 rounded border px-1.5 py-0.5 text-center font-mono text-[11px] ${formTone(f.form)}`}
+                      className={`min-w-16 shrink-0 rounded border px-1.5 py-0.5 text-center font-mono text-[11px] ${formTone(f.form)}`}
                     >
                       {f.form}
                     </span>
@@ -271,6 +277,7 @@ function formTone(form: string) {
   if (form.startsWith("8-K")) return "border-cyan-500/40 text-cyan-300";
   if (form.startsWith("10-")) return "border-emerald-500/40 text-emerald-300";
   if (form.startsWith("S-") || form.startsWith("424")) return "border-indigo-500/40 text-indigo-300";
-  if (form === "3" || form === "4" || form === "5") return "border-amber-500/40 text-amber-300";
+  // Anchored so amendments (3/A, 4/A) match but 424B4/425 (checked above) can't.
+  if (/^[345](\/A)?$/.test(form)) return "border-amber-500/40 text-amber-300";
   return "border-zinc-600/60 text-zinc-400";
 }

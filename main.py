@@ -189,10 +189,17 @@ def filings() -> JSONResponse:
             _filings_cache["data"] = _fetch_filings()
             _filings_cache["ts"] = now
         except Exception:  # noqa: BLE001 — serve stale (or empty) over a 500
+            # Back off ~1 min before retrying so a failing EDGAR isn't hit on
+            # every request once the cache has expired.
+            _filings_cache["ts"] = now - FILINGS_TTL + 60.0
             if _filings_cache["data"] is None:
-                return JSONResponse(
-                    {"company": None, "cik": SEC_CIK, "source": "SEC EDGAR", "filings": [], "updated": 0}
-                )
+                _filings_cache["data"] = {
+                    "company": None,
+                    "cik": SEC_CIK,
+                    "source": "SEC EDGAR",
+                    "filings": [],
+                    "updated": 0,
+                }
     return JSONResponse(_filings_cache["data"])
 
 
