@@ -64,22 +64,17 @@ sanity-check that the real-price line populated; Yahoo is an unofficial endpoint
 it breaks, swap `_fetch_stock` for a keyed provider. Rendered by
 `components/PriceTracker.tsx` (polls every 60s).
 
-## Deploy & the two-remote gotcha
+## Deploy & the two remotes
 
 - **`oc`** (`dokku@nuoya.co.uk:spacex`) — the deploy target. `git push oc main`
   triggers a Docker build + release. This is what's live.
-- **`origin`** (GitHub) — source mirror.
+- **`origin`** (GitHub) — source mirror. Histories converged as of Aug 2026 (both
+  remotes share SHAs), so a plain `git push origin main` fast-forwards. Push both
+  remotes when deploying to keep the mirror in sync.
 
-**The two remotes have divergent histories** (separate root commits — same content,
-different SHAs). `local main` tracks the `oc` lineage. A plain `git push origin main`
-will be rejected (non-fast-forward). To update GitHub, cherry-pick onto its lineage:
-
-```bash
-git checkout -b tmp origin/main
-git cherry-pick <commit>            # one or more
-git push origin tmp:main
-git checkout main && git branch -D tmp
-```
+If the dokku push fails with "Host key verification failed", the host key is
+missing from `~/.ssh/known_hosts` on this machine:
+`ssh-keyscan -H nuoya.co.uk >> ~/.ssh/known_hosts`.
 
 After any deploy, verify the live site (`curl https://spacex.algoentropy.com/api/prices`
 and check the bundle/section rendered) rather than trusting the push alone.
