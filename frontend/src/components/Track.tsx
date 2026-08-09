@@ -14,12 +14,6 @@ const fy2025Revenue = data.financials.annual.find((a) => a.year === 2025)?.reven
 const q2 = data.post_ipo.q2_2026;
 const TTM_REVENUE_M = fy2025Revenue - q2.h1_2025_revenue + q2.h1_2026_revenue;
 
-// Add days to an ISO date (YYYY-MM-DD) in UTC, avoiding timezone drift.
-const addDaysISO = (iso: string, days: number) => {
-  const [y, m, d] = iso.split("-").map(Number);
-  return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10);
-};
-
 const daysUntil = (iso: string) => {
   const [y, m, d] = iso.split("-").map(Number);
   return Math.ceil((Date.UTC(y, m - 1, d) - Date.now()) / 86_400_000);
@@ -33,10 +27,11 @@ export function Track() {
   const pricing = ipo.pricing;
   const io = ipo.index_outlook;
 
-  const lockupDate = addDaysISO(ipo.expected_timeline.pricing_date, ipo.lock_up_days);
-  const lockupDays = daysUntil(lockupDate);
   const sharesSold = data.post_ipo.ipo_closing.shares_sold;
-  const lockedShares = pricing.total_shares_outstanding - sharesSold;
+  const lockup = data.post_ipo.lockup;
+  const std = lockup.standard_180_day;
+  const nextTranche = std.tranches.find((t) => daysUntil(t.date) > 0);
+  const nextDays = nextTranche ? daysUntil(nextTranche.date) : 0;
 
   const stock = px?.latest.stock ?? null;
   const shares = px?.shares_outstanding ?? pricing.total_shares_outstanding;
@@ -75,25 +70,36 @@ export function Track() {
           </div>
           <div className="mt-4 space-y-3">
             <EventRow
-              name="Lock-up expiry"
-              when={fmtDate(lockupDate)}
+              name="Lock-up releases — tiered, not a cliff"
+              when={
+                nextTranche
+                  ? `Next: ${nextTranche.label} on ${fmtDate(nextTranche.date)}`
+                  : `Standard tier fully released ${fmtDate(std.expiry)}`
+              }
               chip={
-                lockupDays > 0
-                  ? `${lockupDays} day${lockupDays === 1 ? "" : "s"} away`
+                nextTranche
+                  ? `${nextDays} day${nextDays === 1 ? "" : "s"} away`
                   : "Passed"
               }
               chipTone={
-                lockupDays <= 0
+                !nextTranche
                   ? "border-zinc-600/60 text-zinc-400"
-                  : lockupDays <= 30
+                  : nextDays <= 30
                     ? "border-red-500/40 text-red-300"
                     : "border-amber-500/40 text-amber-300"
               }
+              href={lockup.source_url}
             >
-              {ipo.lock_up_days} days after the {fmtDate(ipo.expected_timeline.pricing_date)} pricing.
-              ~{(lockedShares / 1e9).toFixed(1)}B locked shares against a{" "}
-              {(sharesSold / 1e6).toFixed(0)}M-share float (over-allotment exercised in full) — the
-              largest supply event on the calendar. Underwriters can release holders early.
+              First unlock already happened: 20% of the ~{std.pool_shares_approx_billions}B
+              standard-lock-up shares (~
+              {((std.pool_shares_approx_billions * 0.2) * 1000).toFixed(0)}M — more than the{" "}
+              {(sharesSold / 1e6).toFixed(0)}M-share float) became sellable{" "}
+              {fmtDate("2026-08-06")}, two trading days after Q2 results. A further 10% price
+              trigger (30% above the $135 IPO price) was not met. Then +7% on each of five dates
+              through {fmtDate("2026-10-24")}, +28% after Q3 results (~Nov), full release{" "}
+              {fmtDate(std.expiry)}. Musk ({lockup.founder.days} days, no early release) and the
+              extended group — ~{lockup.extended.shares_incl_founder_approx_billions}B shares
+              together — stay locked into mid/late 2027.
             </EventRow>
             <EventRow
               name="First quarterly report (Q2 2026)"
@@ -230,7 +236,8 @@ export function Track() {
           )}
           <p className="mt-3 text-[11px] text-zinc-500">
             Direct from SEC EDGAR (CIK 1181412), refreshed ~every 10 minutes. Forms 3/4 are insider
-            ownership disclosures — the ones to watch once the lock-up ends.
+            ownership disclosures — the ones to watch now that lock-up tranches are unlocking
+            (sales since the Aug 6 release are due on Form 4 within two business days).
           </p>
         </Card>
       </div>

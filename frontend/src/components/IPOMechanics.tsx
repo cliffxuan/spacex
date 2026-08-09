@@ -92,15 +92,21 @@ export function IPOMechanics() {
 
         <MechanicCard
           icon={<Lock size={18} />}
-          title="180-day lock-up"
+          title="Tiered lock-up"
           tone="from-cyan-500/15"
           body={
             <>
-              Insiders cannot sell for{" "}
-              <span className="text-zinc-100">{data.ipo.lock_up_days} days</span> after
-              pricing — so the lock-up runs into{" "}
-              <span className="text-zinc-100">{fmtDate("2026-12-08")}</span>. The underwriters
-              can release early, and a "directed share program" of employees is exempt.
+              Standard holders are locked{" "}
+              <span className="text-zinc-100">{data.ipo.lock_up_days} days</span> (to{" "}
+              <span className="text-zinc-100">{fmtDate("2026-12-08")}</span>) but release in
+              tranches — 20% unlocked{" "}
+              <span className="text-zinc-100">{fmtDate("2026-08-06")}</span> after Q2 results,
+              7% steps through Oct 24, +28% after Q3 results. Musk:{" "}
+              <span className="text-zinc-100">366 days, no early release</span>; an extended
+              group (~7.8B shares incl. his) is locked into 2027.{" "}
+              <SourceLink href={data.post_ipo.lockup.source_url}>
+                424B4 — Lock-up Agreements
+              </SourceLink>
             </>
           }
         />

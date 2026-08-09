@@ -99,6 +99,39 @@
       "pricing_release_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026044955/exhibit991-pricing8xk.htm"
     },
     "nasdaq_100_effective": "2026-07-07",
+    "lockup": {
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026042639/spaceexplorationtechnologi.htm",
+      "note": "Per the final prospectus (424B4, June 12, 2026), 'Underwriting — Lock-up Agreements'. Three tiers; the standard tier has automatic early releases.",
+      "standard_180_day": {
+        "pool_shares_approx_billions": 4.1,
+        "expiry": "2026-12-08",
+        "tranches": [
+          {"date": "2026-08-06", "label": "+20%", "trigger": "2nd full trading day after Q2 2026 results (released Aug 4)"},
+          {"date": "2026-08-20", "label": "+7%", "trigger": "70 days after prospectus"},
+          {"date": "2026-09-09", "label": "+7%", "trigger": "90 days after prospectus"},
+          {"date": "2026-09-24", "label": "+7%", "trigger": "105 days after prospectus"},
+          {"date": "2026-10-09", "label": "+7%", "trigger": "120 days after prospectus"},
+          {"date": "2026-10-24", "label": "+7%", "trigger": "135 days after prospectus"},
+          {"date": "2026-12-08", "label": "100%", "trigger": "180 days after prospectus — full release"}
+        ],
+        "after_q3_results": "+28% on the 2nd full trading day after Q3 2026 results (no fixed date; ~Nov 2026)",
+        "price_trigger": {
+          "detail": "An additional 10% would have released with the first tranche if the stock had closed ≥30% above the $135 IPO price ($175.50) on 5 of the 10 trading days ending Aug 4, 2026.",
+          "met": false,
+          "note_as_of_2026_08_09": "Not met — closes in that window ran $108-125."
+        }
+      },
+      "extended": {
+        "shares_incl_founder_approx_billions": 7.8,
+        "expiry": "2nd full trading day after Q2 2027 results (~Aug 2027)",
+        "early_releases": "Staged from Q1 2027: 20% after Q4 2026 results; +10% on Mar 18, 2027; further tranches after Q1 2027 results; full release after Q2 2027 results."
+      },
+      "founder": {
+        "days": 366,
+        "expiry": "2027-06-12",
+        "early_release": "None — Musk's shares have no early-release provisions."
+      }
+    },
     "q2_2026": {
       "filed": "2026-08-04",
       "ten_q_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
