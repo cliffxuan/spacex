@@ -8,12 +8,11 @@ import { CalendarClock, FileText, Gauge, ExternalLink } from "lucide-react";
 const EDGAR_BROWSE_URL =
   "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001181412&type=&dateb=&owner=include&count=40";
 
-// Trailing-twelve-month revenue to Mar 31, 2026 ($M): FY2025 − Q1 2025 + Q1 2026,
-// all from the S-1. The latest fundamentals anyone has until the first 10-Q.
+// Trailing-twelve-month revenue to Jun 30, 2026 ($M): FY2025 − H1 2025 + H1 2026.
+// FY2025 from the S-1; the H1 figures from the first 10-Q (filed Aug 4, 2026).
 const fy2025Revenue = data.financials.annual.find((a) => a.year === 2025)?.revenue ?? 0;
-const q1_2025Revenue = data.financials.quarterly.find((q) => q.period === "Q1 2025")?.revenue ?? 0;
-const q1_2026Revenue = data.financials.quarterly.find((q) => q.period === "Q1 2026")?.revenue ?? 0;
-const TTM_REVENUE_M = fy2025Revenue - q1_2025Revenue + q1_2026Revenue;
+const q2 = data.post_ipo.q2_2026;
+const TTM_REVENUE_M = fy2025Revenue - q2.h1_2025_revenue + q2.h1_2026_revenue;
 
 // Add days to an ISO date (YYYY-MM-DD) in UTC, avoiding timezone drift.
 const addDaysISO = (iso: string, days: number) => {
@@ -36,7 +35,8 @@ export function Track() {
 
   const lockupDate = addDaysISO(ipo.expected_timeline.pricing_date, ipo.lock_up_days);
   const lockupDays = daysUntil(lockupDate);
-  const lockedShares = pricing.total_shares_outstanding - pricing.shares_offered;
+  const sharesSold = data.post_ipo.ipo_closing.shares_sold;
+  const lockedShares = pricing.total_shares_outstanding - sharesSold;
 
   const stock = px?.latest.stock ?? null;
   const shares = px?.shares_outstanding ?? pricing.total_shares_outstanding;
@@ -92,18 +92,33 @@ export function Track() {
             >
               {ipo.lock_up_days} days after the {fmtDate(ipo.expected_timeline.pricing_date)} pricing.
               ~{(lockedShares / 1e9).toFixed(1)}B locked shares against a{" "}
-              {(pricing.shares_offered / 1e6).toFixed(0)}M-share float — the largest supply event on
-              the calendar. Underwriters can release holders early.
+              {(sharesSold / 1e6).toFixed(0)}M-share float (over-allotment exercised in full) — the
+              largest supply event on the calendar. Underwriters can release holders early.
             </EventRow>
             <EventRow
               name="First quarterly report (Q2 2026)"
-              when="Expected Aug–Sep 2026"
-              chip="Not yet announced"
-              chipTone="border-zinc-600/60 text-zinc-400"
+              when={`Filed ${fmtDate(q2.filed)} · 10-Q + 8-K`}
+              chip="Reported"
+              chipTone="border-emerald-500/40 text-emerald-300"
+              href={q2.earnings_release_url}
             >
-              The first fundamental datapoint beyond the S-1 — until then, Q1 2026 (revenue $
-              {(q1_2026Revenue / 1000).toFixed(1)}B) is the freshest number anyone has. Watch for the
-              8-K and 10-Q in the filings feed below.
+              Revenue ${(q2.revenue / 1000).toFixed(1)}B (+{q2.revenue_yoy_pct}% YoY); net loss
+              narrowed to ${Math.abs(q2.net_income)}M; adjusted EBITDA $
+              {(q2.adjusted_ebitda / 1000).toFixed(1)}B with the AI segment EBITDA-positive for the
+              first time. ${q2.cash_and_marketable_securities_usd_billions}B cash & marketable
+              securities, ${q2.backlog_usd_billions}B backlog. Next datapoint: the Q3 10-Q, ~Nov
+              2026.
+            </EventRow>
+            <EventRow
+              name="Cursor acquisition close"
+              when={`Expected ${q2.cursor_expected_close}`}
+              chip="Announced Aug 4"
+              chipTone="border-cyan-500/40 text-cyan-300"
+              href={q2.earnings_release_url}
+            >
+              The S-1's option over Anysphere (Cursor) became a definitive agreement — a $
+              {q2.cursor_acquisition_usd_billions}B acquisition announced with Q2 results, expected
+              to close in {q2.cursor_expected_close}. Watch for a closing 8-K.
             </EventRow>
             <EventRow
               name="Nasdaq-100 · Fast Entry"
@@ -166,9 +181,10 @@ export function Track() {
             />
           </dl>
           <p className="mt-4 text-[11px] leading-relaxed text-zinc-500">
-            Derived from the live price — not filing facts. TTM revenue to Mar 31, 2026 is $
-            {(TTM_REVENUE_M / 1000).toFixed(1)}B (FY2025 − Q1 2025 + Q1 2026, per the S-1). The perp
-            row is Hyperliquid's third-party pre-IPO market, which should converge to the stock.
+            Derived from the live price — not filing facts. TTM revenue to Jun 30, 2026 is $
+            {(TTM_REVENUE_M / 1000).toFixed(1)}B (FY2025 per the S-1, − H1 2025 + H1 2026 per the
+            first 10-Q). The perp row is Hyperliquid's third-party pre-IPO market, which should
+            converge to the stock.
           </p>
         </Card>
 

@@ -33,11 +33,16 @@ export function UseOfProceeds() {
           <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-red-300">
             <Coins size={14} /> Bridge loan — non-negotiable
           </div>
-          <h3 className="mt-2 text-2xl font-semibold">$20.0B mandatory repayment</h3>
+          <h3 className="mt-2 text-2xl font-semibold">$20.0B mandatory repayment — done</h3>
           <p className="mt-3 text-sm text-zinc-400">
             Net proceeds of the IPO were required by covenant to repay the SpaceX
             Bridge Loan — earmarked to clear it ahead of its{" "}
-            <span className="text-zinc-200">Sept 2, 2027</span> maturity.
+            <span className="text-zinc-200">Sept 2, 2027</span> maturity. It was repaid in
+            full on <span className="text-zinc-200">June 26, 2026</span>, refinanced by a{" "}
+            <span className="text-zinc-200">$25B</span> inaugural bond: five tranches maturing
+            2031–2056, coupons 5.35–6.65% (weighted avg 5.855%), rated Baa1 / BBB+ / BBB
+            (post-S-1 fact).{" "}
+            <SourceLink href={data.post_ipo.bond.source_url}>Closing 8-K, June 26, 2026</SourceLink>
           </p>
           <div className="mt-5 grid grid-cols-2 gap-3 text-center text-sm">
             <Mini label="Bridge loan" value="$20.0B" />

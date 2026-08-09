@@ -1,5 +1,5 @@
 import { Section, Card, SourceLink } from "./Section";
-import { data, SEC_URL, AMENDMENT_URL, fmtDate } from "../data";
+import { data, AMENDMENT_URL, fmtDate } from "../data";
 import { Vote, Lock, Building2, Coins, Banknote, AlertTriangle, Tag, CalendarClock, LineChart } from "lucide-react";
 
 export function IPOMechanics() {
@@ -138,8 +138,10 @@ export function IPOMechanics() {
             <>
               By contract, net IPO proceeds were earmarked to repay the{" "}
               <span className="text-red-300">$20B SpaceX Bridge Loan</span> first — ahead of its
-              Sept 2, 2027 maturity.{" "}
-              <SourceLink href={SEC_URL}>Use of Proceeds</SourceLink>
+              Sept 2, 2027 maturity. Done: repaid in full on{" "}
+              <span className="text-zinc-100">June 26, 2026</span>, refinanced by a $25B
+              investment-grade bond.{" "}
+              <SourceLink href={data.post_ipo.bond.source_url}>Closing 8-K</SourceLink>
             </>
           }
         />

@@ -48,17 +48,17 @@
       "other_underwriters": ["BofA Securities", "Citigroup", "J.P. Morgan", "Barclays", "Deutsche Bank Securities", "RBC Capital Markets", "UBS Investment Bank", "Wells Fargo Securities", "Allen & Company LLC", "Cantor", "Needham & Company", "Raymond James", "Societe Generale", "Stifel", "William Blair", "BTG Pactual", "ING", "Macquarie Capital", "Mirae Asset Securities", "Mizuho", "Santander"]
     },
     "index_outlook": {
-      "disclaimer": "Not from the prospectus. Index inclusion follows each provider's methodology, not the IPO calendar — figures below are our analysis as of June 2026.",
+      "disclaimer": "Not from the prospectus. Index inclusion follows each provider's methodology, not the IPO calendar — figures below are our analysis as of August 2026.",
       "nasdaq_100": {
-        "status": "Likely fast-tracked",
-        "estimate": "~early July 2026",
-        "detail": "Nasdaq's 'Fast Entry' rule (effective May 1, 2026) admits a new listing ranking in the top ~40 constituents by total market value (~$100B threshold, ≥$5M ADTV) after 15 trading days. At ~$1.69T, SPCX clears that easily — so ~15 trading days after the June 12 debut.",
+        "status": "Added July 7, 2026",
+        "estimate": "Effective July 7, 2026",
+        "detail": "Confirmed. Nasdaq added SPCX under the 'Fast Entry' rule (effective May 1, 2026), which admits a new listing ranking in the top ~40 constituents by total market value after 15 trading days — exactly 15 trading days after the June 12 debut. No constituent was removed; the index temporarily carries more than 100 names.",
         "source_url": "https://www.nasdaq.com/newsroom/nasdaq100-index-methodology-update-why-now"
       },
       "sp_500": {
-        "status": "Not eligible near-term",
+        "status": "Not eligible yet",
         "estimate": "No scheduled date",
-        "detail": "S&P 500 requires positive GAAP net income in the latest quarter and across the trailing four quarters; SpaceX posted -$4.9B (FY2025) and -$4.3B (Q1 2026). Public float (~4.4%) is also below the ~10% minimum. Multi-class shares are not a blocker (ban lifted 2023). Entry is conditional on fundamentals, not timing.",
+        "detail": "S&P 500 requires positive GAAP net income in the latest quarter and across the trailing four quarters; SpaceX is still loss-making — -$4.9B (FY2025), -$4.3B (Q1 2026), -$541M (Q2 2026, per the first 10-Q) — though the loss is narrowing. Public float (~5% after the over-allotment) also remains below the ~10% minimum. Multi-class shares are not a blocker (ban lifted 2023). Entry is conditional on fundamentals, not timing.",
         "source_url": "https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-us-indices.pdf"
       }
     },
@@ -76,6 +76,64 @@
       {"jurisdiction": "Australia", "detail": "Australian prospectus (Australian-law wrap + U.S. preliminary prospectus), June 4, 2026."},
       {"jurisdiction": "Canada", "detail": "Second amended & restated preliminary base PREP prospectus, June 3, 2026."}
     ]
+  },
+  "post_ipo": {
+    "disclaimer": "Not from the S-1 — post-IPO facts from SpaceX's subsequent SEC filings (8-Ks, first 10-Q), as of August 9, 2026.",
+    "ipo_closing": {
+      "closed": "2026-06-15",
+      "shares_sold": 638888888,
+      "net_proceeds_usd_billions": 85.7,
+      "note": "Underwriters exercised the over-allotment in full: 638.9M shares sold vs the 555.6M base offering.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026043288/spaceexplorationtechnologi.htm"
+    },
+    "bond": {
+      "closed": "2026-06-26",
+      "total_usd_billions": 25,
+      "tranches": 5,
+      "maturity_range": "July 2031 - July 2056",
+      "coupon_range_pct": "5.35% - 6.65%",
+      "weighted_avg_coupon_pct": 5.855,
+      "ratings": "Baa1 (Moody's) / BBB+ (Fitch) / BBB (S&P)",
+      "purpose": "Inaugural investment-grade senior notes; net proceeds repaid the $20B SpaceX Bridge Loan in full, remainder for general corporate purposes.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026045763/spcx-closing8xkjune2026.htm",
+      "pricing_release_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026044955/exhibit991-pricing8xk.htm"
+    },
+    "nasdaq_100_effective": "2026-07-07",
+    "q2_2026": {
+      "filed": "2026-08-04",
+      "ten_q_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "earnings_release_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052515/earningsreleaseq22608042.htm",
+      "revenue": 7814,
+      "revenue_yoy_pct": 92,
+      "operating_income": -143,
+      "net_income": -541,
+      "adjusted_ebitda": 3538,
+      "segments": {"Space": 962, "Connectivity": 4291, "AI": 2561},
+      "ai_adjusted_ebitda": 1146,
+      "capex": 18369,
+      "ai_capex": 15828,
+      "h1_2026_revenue": 12508,
+      "h1_2025_revenue": 8138,
+      "starlink_subscribers_millions": 12.0,
+      "starlink_arpu_usd": 66,
+      "nameplate_compute_gw": 1.4,
+      "total_launches": 38,
+      "h1_launches": 78,
+      "h1_mass_to_orbit_mt": 1041,
+      "cash_and_marketable_securities_usd_billions": 100,
+      "backlog_usd_billions": 47.5,
+      "cloud_agreements_contracted_sales_usd_billions": 14.1,
+      "starshield_awards_usd_billions": 6,
+      "starship_rd_millions": 1076,
+      "cursor_acquisition_usd_billions": 60,
+      "cursor_expected_close": "Q3 2026",
+      "grok_45_released": "July 2026"
+    },
+    "starship_flights": {
+      "flight_12": {"date": "2026-05-22", "summary": "Starship V3 debut from the new Starbase pad — precision landing of the upper stage; deployed modified V2 Starlink satellites. (Booster lost before its boost-back burn, per press reports.)"},
+      "flight_13": {"date": "July 2026", "summary": "All flight objectives achieved — deployed 20 production V3 Starlink satellites, demonstrated in-space Raptor relight, softest-ever splashdown with an intact heatshield."},
+      "source": "Q2 2026 earnings release (8-K exhibit, Aug 4, 2026)"
+    }
   },
   "financials": {
     "annual": [

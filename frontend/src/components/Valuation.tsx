@@ -95,12 +95,21 @@ export function Valuation() {
             </p>
           </Card>
           <Card className="bg-gradient-to-br from-cyan-500/[0.06] via-zinc-900/60 to-zinc-950/80">
-            <h3 className="text-lg font-semibold">Optional Cursor acquisition</h3>
+            <h3 className="text-lg font-semibold">Cursor acquisition — now agreed</h3>
             <p className="mt-2 text-sm text-zinc-400">
-              The S-1 discloses an option to acquire <span className="text-zinc-100">Anysphere (Cursor)</span> at an implied{" "}
+              The S-1 disclosed an option to acquire <span className="text-zinc-100">Anysphere (Cursor)</span> at an implied{" "}
               <span className="text-cyan-300 tabular">${data.valuation.cursor_implied_billions}B</span>{" "}
-              equity value. Termination fee: $1.5B option + $8.5B deferred compute.{" "}
+              equity value (termination fee: $1.5B option + $8.5B deferred compute).{" "}
               <SourceLink href={SEC_URL}>Related-party / Strategic transactions</SourceLink>
+            </p>
+            <p className="mt-2 text-sm text-zinc-400">
+              Post-S-1: with Q2 results (Aug 4, 2026), SpaceX announced a definitive agreement to
+              acquire Cursor for{" "}
+              <span className="text-cyan-300 tabular">
+                ${data.post_ipo.q2_2026.cursor_acquisition_usd_billions}B
+              </span>
+              , expected to close in {data.post_ipo.q2_2026.cursor_expected_close}.{" "}
+              <SourceLink href={data.post_ipo.q2_2026.earnings_release_url}>Q2 2026 release</SourceLink>
             </p>
           </Card>
         </div>

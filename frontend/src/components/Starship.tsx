@@ -17,20 +17,27 @@ export function Starship() {
           <div className="absolute inset-0 -z-0 opacity-20 grid-bg" />
           <div className="relative">
             <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-orange-300/80">
-              <Flame size={14} /> Flight 12 · next milestone
+              <Flame size={14} /> Flights 12 &amp; 13 · V3 has flown
             </div>
             <h3 className="mt-3 text-2xl font-semibold">
-              {data.starship.flight_tests_executed} flight tests so far.
+              13 flight tests so far.
               <br />
               <span className="bg-gradient-to-r from-orange-300 to-amber-200 bg-clip-text text-transparent">
-                The next one debuts next-gen Starship + Super Heavy.
+                Next-gen Starship + Super Heavy is flying — and delivering satellites.
               </span>
             </h3>
             <p className="mt-3 max-w-xl text-sm text-zinc-400">
-              First payload to orbit is targeted for <span className="text-zinc-200">H2 2026</span>{" "}
-              from a newly designed pad at Starbase. Per the prospectus, Starship V3 targets{" "}
-              <span className="text-zinc-200">100 metric tons</span> to orbit fully reusable,
-              with future generations aiming to double that.
+              The S-1 ({data.starship.flight_tests_executed} tests at filing) pointed to Flight 12
+              as the next-gen debut. It flew on{" "}
+              <span className="text-zinc-200">May 22, 2026</span> from the new Starbase pad, and
+              Flight 13 (July) hit every objective — deploying{" "}
+              <span className="text-zinc-200">20 production V3 Starlink satellites</span> and
+              relighting a Raptor in space. Per the prospectus, V3 targets{" "}
+              <span className="text-zinc-200">100 metric tons</span> to orbit fully reusable, with
+              future generations aiming to double that.{" "}
+              <SourceLink href={data.post_ipo.q2_2026.earnings_release_url}>
+                Q2 2026 release (post-S-1)
+              </SourceLink>
             </p>
 
             <div className="mt-6 grid grid-cols-3 gap-3 text-center">
@@ -57,6 +64,12 @@ export function Starship() {
               label="Q1 2026 Starship R&D"
               value="$930M"
               pct={31}
+              color="bg-orange-400"
+            />
+            <Bar
+              label="Q2 2026 Starship R&D (per 10-Q)"
+              value="$1.08B"
+              pct={36}
               color="bg-orange-400"
             />
             <Bar

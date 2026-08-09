@@ -111,7 +111,10 @@ export function Starlink() {
             <p className="mt-2 text-sm text-zinc-400">
               Each Starship can deploy up to <span className="text-cyan-300 tabular">60 V3 satellites</span> — about a{" "}
               <span className="text-cyan-300 tabular">20× increase</span> in downlink
-              capacity vs. a Falcon 9 launch. V3 sats target ~1 Tbps each.
+              capacity vs. a Falcon 9 launch. V3 sats target ~1 Tbps each. Deployment has
+              begun: Starship Flight 13 (July 2026) carried the first{" "}
+              <span className="text-cyan-300 tabular">20 production V3 satellites</span> to
+              orbit (post-S-1, per the Q2 2026 release).
             </p>
             <div className="mt-4 grid grid-cols-3 gap-3 text-center">
               <Mini label="V3 downlink" value="1 Tbps" />
