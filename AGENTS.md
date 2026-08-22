@@ -16,7 +16,7 @@ chart. Deployed at https://spacex.algoentropy.com.
   `GET /api/prices` (live price data). Stdlib-only HTTP; **no extra Python deps**.
 - `data/prospectus.json` — canonical extracted S-1 data (the source of truth).
 - `justfile` — task runner. Run `just` to list recipes.
-- `Dockerfile` — multi-stage (node build → python serve). Dokku builds this on deploy.
+- `Dockerfile` — multi-stage (node build → python serve). Dokploy builds this on deploy.
 
 ## Common tasks (use `just`)
 
@@ -27,7 +27,7 @@ chart. Deployed at https://spacex.algoentropy.com.
 - `just typecheck` — `tsc -b`.
 - `just serve` — build, then serve SPA + API from one uvicorn (production-like).
 - `just sync-data` — see below.
-- `just deploy` — `git push oc main`.
+- `just deploy` — `git push origin main`.
 
 ## Data flow — the one easy mistake
 
@@ -64,20 +64,11 @@ sanity-check that the real-price line populated; Yahoo is an unofficial endpoint
 it breaks, swap `_fetch_stock` for a keyed provider. Rendered by
 `components/PriceTracker.tsx` (polls every 60s).
 
-## Deploy & the two remotes
+## Deployments
 
-- **`oc`** (`dokku@nuoya.co.uk:spacex`) — the deploy target. `git push oc main`
-  triggers a Docker build + release. This is what's live.
-- **`origin`** (GitHub) — source mirror. Histories converged as of Aug 2026 (both
-  remotes share SHAs), so a plain `git push origin main` fast-forwards. Push both
-  remotes when deploying to keep the mirror in sync.
+- **`origin`** (GitHub) — the source of truth. Pushing to `origin main` triggers an automatic deploy on Dokploy (via webhook/polling).
+- After any deploy, verify the live site (`curl https://spacex.algoentropy.com/api/prices` and check the bundle/section rendered) to verify it is active.
 
-If the dokku push fails with "Host key verification failed", the host key is
-missing from `~/.ssh/known_hosts` on this machine:
-`ssh-keyscan -H nuoya.co.uk >> ~/.ssh/known_hosts`.
-
-After any deploy, verify the live site (`curl https://spacex.algoentropy.com/api/prices`
-and check the bundle/section rendered) rather than trusting the push alone.
 
 ## Conventions & gotchas
 

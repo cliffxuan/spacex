@@ -52,6 +52,7 @@ sync-data:
 prices:
     curl -s http://localhost:{{port}}/api/prices | python3 -m json.tool
 
-# Deploy to the Dokku host (builds in-container, no local build needed)
+# Deploy to Dokploy (pushes to origin main, auto-deployed by Dokploy)
 deploy:
-    git push oc main
+    git push origin main
+

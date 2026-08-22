@@ -19,7 +19,8 @@ cd frontend && npm install && npm run dev
 ## Deploy
 
 ```bash
-git push oc main
+git push origin main
 ```
 
-Dokku app `spacex` on host `oc` (nuoya.co.uk).
+Dokploy app `spacex-chart` on host `ct` (dokploy.algoentropy.com).
+
