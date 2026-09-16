@@ -1,1 +1,1 @@
-PLACEHOLDER
+import { type ReactNode } from "react";
