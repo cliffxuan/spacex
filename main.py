@@ -14,8 +14,9 @@ app = FastAPI(title="SPCX · SpaceX IPO, charted")
 # --- Live price tracker: pre-IPO perp (Hyperliquid) vs. listed stock (Nasdaq) ---
 IPO_PRICE = 135.0
 LISTING_DATE = "2026-06-12"
-# Total shares outstanding post-offering (S-1/A No. 2). Used for live market cap.
-SHARES_OUTSTANDING = 12_520_309_620
+# Total shares outstanding for live market cap: S-1/A No. 2 base + Cursor closing
+# issuance (8-K filed 2026-08-14). Vested-RSU leg is pre-withholding per the filing.
+SHARES_OUTSTANDING = 12_911_351_300
 PERP_COIN = "xyz:SPCX"
 STOCK_SYMBOL = "SPCX"
 HL_URL = "https://api.hyperliquid.xyz/info"

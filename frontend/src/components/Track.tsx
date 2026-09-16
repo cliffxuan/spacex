@@ -90,13 +90,15 @@ export function Track() {
               }
               href={lockup.source_url}
             >
-              First unlock already happened: 20% of the ~{std.pool_shares_approx_billions}B
-              standard-lock-up shares (~
-              {((std.pool_shares_approx_billions * 0.2) * 1000).toFixed(0)}M — more than the{" "}
-              {(sharesSold / 1e6).toFixed(0)}M-share float) became sellable{" "}
-              {fmtDate("2026-08-06")}, two trading days after Q2 results. A further 10% price
-              trigger (30% above the $135 IPO price) was not met. Then +7% on each of five dates
-              through {fmtDate("2026-10-24")}, +28% after Q3 results (~Nov), full release{" "}
+              34% of the ~{std.pool_shares_approx_billions}B standard-lock-up pool is unlocked
+              (~
+              {((std.pool_shares_approx_billions * 0.34) * 1000).toFixed(0)}M — well above the{" "}
+              {(sharesSold / 1e6).toFixed(0)}M-share float): the first 20% on{" "}
+              {fmtDate("2026-08-06")} (two trading days after Q2 results), then +7% on{" "}
+              {fmtDate("2026-08-20")} (70 days) and {fmtDate("2026-09-09")} (90 days). A further
+              10% price trigger (30% above the $135 IPO price) was not met with the first tranche.
+              Next +7% on {fmtDate("2026-09-24")}, then further +7% dates through{" "}
+              {fmtDate("2026-10-24")}, +28% after Q3 results (~Nov), full release{" "}
               {fmtDate(std.expiry)}. Musk ({lockup.founder.days} days, no early release) and the
               extended group — ~{lockup.extended.shares_incl_founder_approx_billions}B shares
               together — stay locked into mid/late 2027.
@@ -117,14 +119,15 @@ export function Track() {
             </EventRow>
             <EventRow
               name="Cursor acquisition close"
-              when={`Expected ${q2.cursor_expected_close}`}
-              chip="Announced Aug 4"
-              chipTone="border-cyan-500/40 text-cyan-300"
-              href={q2.earnings_release_url}
+              when={`Closed ${fmtDate(q2.cursor_closed)} · 8-K`}
+              chip="Closed Aug 14"
+              chipTone="border-emerald-500/40 text-emerald-300"
+              href={q2.cursor_close_8k_url}
             >
               The S-1's option over Anysphere (Cursor) became a definitive agreement — a $
-              {q2.cursor_acquisition_usd_billions}B acquisition announced with Q2 results, expected
-              to close in {q2.cursor_expected_close}. Watch for a closing 8-K.
+              {q2.cursor_acquisition_usd_billions}B all-stock acquisition announced with Q2 results
+              — and closed on {fmtDate(q2.cursor_closed)}. Closing 8-K (Items 2.01 / 3.02) reports
+              issuance of ~391.0M Class A shares as merger consideration.
             </EventRow>
             <EventRow
               name="Nasdaq-100 · Fast Entry"
