@@ -95,7 +95,7 @@ export function Valuation() {
             </p>
           </Card>
           <Card className="bg-gradient-to-br from-cyan-500/[0.06] via-zinc-900/60 to-zinc-950/80">
-            <h3 className="text-lg font-semibold">Cursor acquisition — now agreed</h3>
+            <h3 className="text-lg font-semibold">Cursor acquisition — completed August 14, 2026</h3>
             <p className="mt-2 text-sm text-zinc-400">
               The S-1 disclosed an option to acquire <span className="text-zinc-100">Anysphere (Cursor)</span> at an implied{" "}
               <span className="text-cyan-300 tabular">${data.valuation.cursor_implied_billions}B</span>{" "}
@@ -108,8 +108,10 @@ export function Valuation() {
               <span className="text-cyan-300 tabular">
                 ${data.post_ipo.q2_2026.cursor_acquisition_usd_billions}B
               </span>
-              , expected to close in {data.post_ipo.q2_2026.cursor_expected_close}.{" "}
+              ; the merger closed on August 14, 2026.{" "}
               <SourceLink href={data.post_ipo.q2_2026.earnings_release_url}>Q2 2026 release</SourceLink>
+              {" · "}
+              <SourceLink href={data.post_ipo.cursor_acquisition.source_url}>Closing 8-K</SourceLink>
             </p>
           </Card>
         </div>
