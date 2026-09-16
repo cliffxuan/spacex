@@ -102,7 +102,7 @@ export function Starship() {
                   <span className="text-amber-300">NSSL / NASA:</span> Starship is NASA's Human Landing System for Artemis.
                 </li>
                 <li>
-                  <span className="text-amber-300">Orbital AI compute:</span> Long-term goal of 100 GW of compute in orbit; only Starship-class economics make it plausible.
+                  <span className="text-amber-300">Super Compute in Space:</span> Long-term goal of 100 GW via orbital Super Compute Centers. Shotwell (All-In Summit, Sep 2026): terrestrial DC land jumps ~$3k→$180k/acre on announcement and generator lead times run ~3 years; orbit offers free real estate, continuous solar in SSO, and passive deep-space radiative cooling — Starship reusability is what makes it commercial.
                 </li>
                 <li>
                   <span className="text-amber-300">Mars / Moon:</span> Stated mission and use-of-proceeds anchor — the entire long-term thesis.
